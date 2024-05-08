@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d198825449157a14b954a6df8124ef47, type: 3}
+  m_Name: Demo_Audio Pool
+  m_EditorClassIdentifier: 
+  defaultPoolSize: 0
+  objectPrefab: {fileID: 7939347464821701863, guid: 930160199c604cb4db62cf09b68ab9e8, type: 3}
+  objectSet: {fileID: 11400000, guid: fa9ea538014aefd4e8745735446c8641, type: 2}
+  info: 

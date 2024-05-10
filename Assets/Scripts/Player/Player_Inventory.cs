@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player_Inventory : MonoBehaviour
 {
+    [SerializeField] private List<CardSO> items = new List<CardSO>();
     public static Player_Inventory Instance;
 
     void Awake()
@@ -21,6 +22,7 @@ public class Player_Inventory : MonoBehaviour
     public bool HasItem(CardSO _item)
     {
         // check if the player has the item
-        return true;
+        if(items.Contains(_item)) return true;
+        return false;
     }
 }

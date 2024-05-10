@@ -7,13 +7,12 @@ public class DoorController : MonoBehaviour
     [SerializeField] private CardSO key;
 
 
-    public void OnTriggerEnter(Collider _player)
+    public void OnCollisionEnter(Collision _player)
     {
-        if(_player.tag == "Player")
+        if(_player.gameObject.tag == "Player")
         {
-            if(isLocked)
+            if(isLocked && key)
             {
-                Debug.Log("Door is locked");
                 if(_player.gameObject.GetComponent<Player_Inventory>().HasItem(key))
                 {
                     UnlockDoor();
@@ -38,6 +37,8 @@ public class DoorController : MonoBehaviour
         if(!isOpen && !isLocked)
         {
             //TODO: Do door open in scene
+            gameObject.SetActive(false);
+
             isOpen = true;
         }
 
@@ -48,6 +49,8 @@ public class DoorController : MonoBehaviour
         if(isOpen)
         {
             //TODO: Do door close in scene
+            gameObject.SetActive(true);
+
             isOpen = false;
         }
     }    

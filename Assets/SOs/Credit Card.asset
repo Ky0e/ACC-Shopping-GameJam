@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4ae93eaec0c7a4da9538a1c8017005, type: 3}
   m_Name: Credit Card
   m_EditorClassIdentifier: 
-  cardType: 0
+  cardType: 4

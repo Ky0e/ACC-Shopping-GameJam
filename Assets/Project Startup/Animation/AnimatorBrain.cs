@@ -6,6 +6,8 @@ public class AnimatorBrain : MonoBehaviour
     [field: SerializeField]
     private readonly static int[] animations =
     {
+        Animator.StringToHash("Idle"),
+        Animator.StringToHash("Sprint"),
         /*Animator.StringToHash("Idle")*/
         // Add Extra Animations To This List
         // ANY ANIMATIONS IN THE GAME
@@ -50,6 +52,8 @@ public class AnimatorBrain : MonoBehaviour
 }
 public enum E_Animations
 {
+    Idle,
+    Sprint,
     None
     // Add Extra Enums That Correspond With The Animator Hash Set Order
 }

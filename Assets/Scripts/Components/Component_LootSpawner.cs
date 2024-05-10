@@ -5,6 +5,9 @@ using System.Collections.Generic;
 public class Component_LootSpawner : MonoBehaviour
 {
     [field: SerializeField, BoxGroup("Loot Table Properties"), Expandable] private LootTable roomTable;
+    [field: SerializeField, BoxGroup("Loot Table Properties")] private bool spawnRandomNumberOfObjects = false;
+    [field: SerializeField, BoxGroup("Loot Table Properties"), HideIf("spawnRandomNumberOfObjects"), Label("Constant Number Of Items To Spawn")] private int constantNumberToSpawn;
+    [field: SerializeField, BoxGroup("Loot Table Properties"), ShowIf("spawnRandomNumberOfObjects"), Label("Random Range Of Items To Spawn"), MinMaxSlider(0,20)] private Vector2Int randomNumberOfItemsToSpawn;
     [field: SerializeField, BoxGroup("Explosion Properties")] private float explosionForce;
     [field: SerializeField, BoxGroup("Explosion Properties")] private float explosionRange;
 
@@ -20,10 +23,15 @@ public class Component_LootSpawner : MonoBehaviour
         Debug.LogWarning("List End");
     }
 
-
-    public void OnLootSpawn(int _totalAmountOfItems)
+    private void Update()
     {
-        List<LootItem> _itemList = roomTable.GenerateRandomLoot(_totalAmountOfItems);
+    }
+
+
+    public void OnLootSpawn()
+    {
+        int _numberOfItems = spawnRandomNumberOfObjects ? Random.Range(randomNumberOfItemsToSpawn.x, randomNumberOfItemsToSpawn.y) : constantNumberToSpawn;
+        List <LootItem> _itemList = roomTable.GenerateRandomLoot(_numberOfItems);
 
         foreach (LootItem _item in _itemList) 
         {
@@ -34,7 +42,8 @@ public class Component_LootSpawner : MonoBehaviour
     }
     public void OnLootSpawn(int _totalAmountOfItems, Transform _parent)
     {
-        List<LootItem> _itemList = roomTable.GenerateRandomLoot(_totalAmountOfItems);
+        int _numberOfItems = spawnRandomNumberOfObjects ? Random.Range(randomNumberOfItemsToSpawn.x, randomNumberOfItemsToSpawn.y) : constantNumberToSpawn;
+        List<LootItem> _itemList = roomTable.GenerateRandomLoot(_numberOfItems);
 
         foreach (LootItem _item in _itemList) 
         { 
@@ -45,7 +54,8 @@ public class Component_LootSpawner : MonoBehaviour
     }
     public void OnLootSpawn(int _totalAmountOfItems, Vector3 _position, Quaternion _rotation, Transform _parent)
     {
-        List<LootItem> _itemList = roomTable.GenerateRandomLoot(_totalAmountOfItems);
+        int _numberOfItems = spawnRandomNumberOfObjects ? Random.Range(randomNumberOfItemsToSpawn.x, randomNumberOfItemsToSpawn.y) : constantNumberToSpawn;
+        List<LootItem> _itemList = roomTable.GenerateRandomLoot(_numberOfItems);
 
         foreach (LootItem _item in _itemList) 
         {

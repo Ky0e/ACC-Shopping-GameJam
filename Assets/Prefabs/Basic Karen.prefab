@@ -45,11 +45,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -72,7 +72,8 @@ MonoBehaviour:
   agent: {fileID: 0}
   pursePrefab: {fileID: 9123051877414323988, guid: bf2e4a9fba8bf5542b5602688b86369d, type: 3}
   firePoint: {fileID: 153535075783309645}
-  projectileForce: 0
+  projectileForce: 50
+  shootRange: 5
 --- !u!1 &4727022003274724771
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +278,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ef035a0e501f6f04fbde3fa904a1ffb8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

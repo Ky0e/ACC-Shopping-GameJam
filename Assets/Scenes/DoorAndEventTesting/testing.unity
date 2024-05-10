@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 321768834}
   - component: {fileID: 321768835}
   - component: {fileID: 321768838}
+  - component: {fileID: 321768839}
   m_Layer: 0
   m_Name: BossRoom
   m_TagString: Untagged
@@ -300,8 +301,39 @@ MonoBehaviour:
   item: {fileID: 0}
   doors:
   - {fileID: 694892584}
-  bossPrefab: {fileID: 4543446291468345884, guid: 8a0d6122bfa580b4283507b438adb757, type: 3}
+  bossPrefab: {fileID: 967187906602085260, guid: c8606732a07189547a54ef4f470a4e4b, type: 3}
   bossSpawnLocation: {fileID: 693139593}
+--- !u!114 &321768839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321768832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 516dd83d64121fc4dbf7e86c26989867, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!4 &693139593 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2281282554794470659, guid: 03f861b8b12447c45b29197beccfa734, type: 3}
@@ -1175,6 +1207,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomTable: {fileID: 11400000, guid: bae4006bc67d62d41a0a61b87ddd152a, type: 2}
+  spawnRandomNumberOfObjects: 0
+  constantNumberToSpawn: 0
+  randomNumberOfItemsToSpawn: {x: 0, y: 0}
   explosionForce: 0
   explosionRange: 0
 --- !u!4 &1702389539

@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomEvent_EnemySpawnRoom : MonoBehaviour
+public class RoomEvent_EnemySpawnRoom : Room, IRoomEvent
 {
+    [SerializeField] private bool lockDoors;
     [SerializeField] private CardSO item;
     [SerializeField] private List<DoorController> doors;
     [SerializeField] private List<EnemySpawner> enemies;
@@ -24,9 +25,28 @@ public class RoomEvent_EnemySpawnRoom : MonoBehaviour
             
         // Do the room events
         SpawnEnemies();
+        if (lockDoors) LockRoom();
 
         // This room has been triggered
         triggered = true;
+    }
+
+    private void LockRoom()
+    {
+        foreach (var door in doors)
+        {
+            door.CloseDoor();
+            door.LockDoor();
+        }
+    }
+
+    private void UnlockRoom()
+    {
+        foreach (var door in doors)
+        {
+            door.OpenDoor();
+            door.UnlockDoor();
+        }
     }
 
     private void SpawnEnemies()
@@ -35,5 +55,10 @@ public class RoomEvent_EnemySpawnRoom : MonoBehaviour
         {
             enemy.SpawnEnemy();
         }
+    }
+
+    private void EndEvent()
+    {
+        UnlockRoom();
     }
 }

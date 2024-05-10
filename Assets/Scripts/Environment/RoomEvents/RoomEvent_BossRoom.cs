@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomEvent_BossRoom : MonoBehaviour, IRoomEvent
+public class RoomEvent_BossRoom : Room, IRoomEvent
 {
     [SerializeField] private CardSO item;
     [SerializeField] private List<DoorController> doors;

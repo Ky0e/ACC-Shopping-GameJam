@@ -18,7 +18,20 @@ namespace ProjectStartup.ScriptableObjects.Variables
         [field: SerializeField, AllowNesting, ShowIf("UseConstant")] public float ConstantValue;
         [field: SerializeField, AllowNesting, HideIf("UseConstant")] public FloatVariable Variable;
 
-        public float Value { get { return UseConstant ? ConstantValue : Variable != null ? Variable.Value : 0; } }
+        public float Value
+        {
+            get
+            {
+                return UseConstant ? ConstantValue : Variable != null ? Variable.Value : 0;
+            }
+            set
+            {
+                if (UseConstant)
+                    ConstantValue = value;
+                else if (Variable != null)
+                    Variable.Value = value;
+            }
+        }
     }
 
 }

@@ -6,8 +6,7 @@ public class RoomEvent_BossRoom : MonoBehaviour, IRoomEvent
 {
     [SerializeField] private CardSO item;
     [SerializeField] private List<DoorController> doors;
-    [SerializeField] private GameObject bossPrefab;
-    [SerializeField] private Transform bossSpawnLocation;
+    [SerializeField] private EnemySpawner bossSpawner;
 
 
     private bool triggered = false;
@@ -17,12 +16,19 @@ public class RoomEvent_BossRoom : MonoBehaviour, IRoomEvent
         // Fail fast conditions
         if (triggered) return;
         if (!_player.gameObject.CompareTag("Player")) return;
-            Player_Inventory playerInventory = _player.gameObject.GetComponent<Player_Inventory>();
-        if (item) if(!playerInventory.HasItem(item)) return;
 
+        // Does the room require an item to be in the player's inventory?
+        if (item)
+        {
+            Player_Inventory playerInventory = _player.gameObject.GetComponent<Player_Inventory>();
+            if (!playerInventory.HasItem(item)) return;
+        }
+
+        // Do the room events
         LockRoom();
         SpawnBoss();
         
+        // This room has been triggered
         triggered = true;
     }
 
@@ -37,9 +43,6 @@ public class RoomEvent_BossRoom : MonoBehaviour, IRoomEvent
 
     private void SpawnBoss()
     {
-        if(bossPrefab)
-        {
-            Instantiate(bossPrefab, bossSpawnLocation.position, bossSpawnLocation.rotation);
-        }
+        bossSpawner.SpawnEnemy();
     }
 }

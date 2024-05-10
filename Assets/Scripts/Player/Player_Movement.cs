@@ -141,8 +141,7 @@ public class Player_Movement : AnimatorBrain
             float _turnAMT = Mathf.Clamp((rotationAmount * _axis.x), -90, 90);
             _turnAMT = _axis.y < 0 ? (_turnAMT * -1) + -180 : _axis.y >= 0 ? _turnAMT + 0f : _turnAMT + 0;
 
-
-            Quaternion targetRotation = Quaternion.Euler(0f, _turnAMT, 0f);
+            Quaternion targetRotation = Quaternion.Euler(new(0f, _turnAMT, 0f));
 
             // Smoothly interpolate between the current rotation and the target rotation
             Character_Visuals.transform.rotation = Quaternion.Lerp(Character_Visuals.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);

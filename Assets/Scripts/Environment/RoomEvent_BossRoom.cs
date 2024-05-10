@@ -9,12 +9,17 @@ public class RoomEvent_BossRoom : MonoBehaviour, RoomEvent
     [SerializeField] private GameObject bossPrefab;
     [SerializeField] private Transform bossSpawnLocation;
 
+
+    private bool triggered = false;
+
     public void OnTriggerEnter(Collider _player)
     {
+        if (triggered) return;
         if (_player.gameObject.CompareTag("Player"))
         {
             LockRoom();
             SpawnBoss();
+            triggered = true;
         }
     }
 

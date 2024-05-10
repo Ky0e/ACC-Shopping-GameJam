@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomEvent_BossRoom : MonoBehaviour, RoomEvent
+public class RoomEvent_BossRoom : MonoBehaviour, IRoomEvent
 {
     [SerializeField] private CardSO item;
     [SerializeField] private List<DoorController> doors;
@@ -14,13 +14,16 @@ public class RoomEvent_BossRoom : MonoBehaviour, RoomEvent
 
     public void OnTriggerEnter(Collider _player)
     {
+        // Fail fast conditions
         if (triggered) return;
-        if (_player.gameObject.CompareTag("Player"))
-        {
-            LockRoom();
-            SpawnBoss();
-            triggered = true;
-        }
+        if (!_player.gameObject.CompareTag("Player")) return;
+            Player_Inventory playerInventory = _player.gameObject.GetComponent<Player_Inventory>();
+        if (item) if(!playerInventory.HasItem(item)) return;
+
+        LockRoom();
+        SpawnBoss();
+        
+        triggered = true;
     }
 
     private void LockRoom()

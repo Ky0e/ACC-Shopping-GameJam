@@ -5,17 +5,26 @@ public class DoorController : MonoBehaviour
     [SerializeField] private bool isLocked = false;
     [SerializeField] private bool isOpen = false;
     [SerializeField] private CardSO key;
+    [SerializeField, Tooltip("Is the item removed on use??")] protected bool keyIsRemovedOnUse = true;
+
+
+
 
 
     public void OnCollisionEnter(Collision _player)
     {
         if(_player.gameObject.tag == "Player")
         {
-            if(isLocked && key)
+            Player_Inventory player_Inventory = _player.gameObject.GetComponent<Player_Inventory>();
+            if (isLocked && key)
             {
-                if(_player.gameObject.GetComponent<Player_Inventory>().HasItem(key))
+                if(player_Inventory.HasItem(key))
                 {
                     UnlockDoor();
+                    if (keyIsRemovedOnUse)
+                    {
+                        player_Inventory.RemoveItem(key);
+                    }
                 }
             }
             OpenDoor();

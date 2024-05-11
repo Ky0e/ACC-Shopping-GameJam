@@ -5,6 +5,8 @@ using UnityEngine;
 public class Component_DamageApplier : MonoBehaviour
 {
     [field: SerializeField] public Collider AttackCollider;
+    [SerializeField] private bool shouldDeactivate = true;
+
     public void ApplyDamage(int _ignoreLayer = -1, int _damage = 5, float _deactivateAfter = .2f)
     {
         AttackCollider.gameObject.SetActive(true);
@@ -27,7 +29,7 @@ public class Component_DamageApplier : MonoBehaviour
         }
 
         // Deactivate the attack collider after a short delay
-        Invoke("DeactivateCollider", _deactivateAfter);
+        if(shouldDeactivate) Invoke("DeactivateCollider", _deactivateAfter);
     }
     // Deactivate the attack collider
     private void DeactivateCollider()

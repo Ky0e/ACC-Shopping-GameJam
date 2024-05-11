@@ -1458,8 +1458,8 @@ MonoBehaviour:
   movementThreshold: 0.01
   dampSpeedUp: 1
   dampSpeedDown: 0.69
-  rotationAmount: 90
-  rotationSpeed: 2500
+  rotationAmount: 0.01
+  rotationSpeed: 500
   rideHeight: 1
   rideSpringStrength: 500
   rideSpringDamp: 100

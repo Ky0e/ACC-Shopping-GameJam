@@ -19,7 +19,6 @@ public class Component_Health : MonoBehaviour, IDamageable
     public void ResetHealthButtonTest() => SetHealth(0);
 
 
-
     /// <summary>
     /// Increases The Health By The Specified Amount
     /// </summary>

@@ -1,22 +1,26 @@
+using NaughtyAttributes;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class BasicKaren : Enemy
 {
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] GameObject pursePrefab;
-    [SerializeField] Transform firePoint;
-    [SerializeField] float projectileForce;
-    [SerializeField] float shootRange;
-    GameObject target;
-    bool isShooting;
+    [field: SerializeField, BoxGroup("Navigation Properties"), ReadOnly] private NavMeshAgent agent;
+    [field: SerializeField, BoxGroup("Navigation Properties")] private float timeBetweenAttacks;
+    [field: SerializeField, BoxGroup("Navigation Properties")] private float distanceFromTarget;
+    [field: SerializeField, BoxGroup("Ranged Attack Properties")] private GameObject pursePrefab;
+    [field: SerializeField, BoxGroup("Ranged Attack Properties")] private Transform firePoint;
+    [field: SerializeField, BoxGroup("Ranged Attack Properties")] private float projectileForce;
+    [field: SerializeField, BoxGroup("Ranged Attack Properties")] private float shootRange;
+    private GameObject target;
+    private bool isShooting;
 
 
     private void Awake()
     {
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player");
+        agent.stoppingDistance = distanceFromTarget;
     }
 
     private void Update()

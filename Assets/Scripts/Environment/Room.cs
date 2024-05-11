@@ -15,17 +15,18 @@ public abstract class Room : MonoBehaviour, IListener
     public void Notify(GameObject _messenger)
     {
         enemyObjects.Remove(_messenger);
-        Debug.Log("Enemy has been defeated");
         if (enemyObjects.Count == 0)
         {
-            Debug.Log("All enemies have been defeated");
             EndEvent();
         }
     }
 
     public void OnDestroy()
     {
-        throw new System.NotImplementedException();
+        foreach (var enemy in enemyObjects)
+        {
+            enemy.GetComponent<Enemy>().UnregisterListener(this);
+        }
     }
 
     protected abstract void EndEvent();

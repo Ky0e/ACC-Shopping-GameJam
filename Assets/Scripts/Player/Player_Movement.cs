@@ -89,10 +89,6 @@ public class Player_Movement : AnimatorBrain
         //CheckTopAnimation();
 
         //if (character_Animator.layerCount > 1) CheckBottomAnimation();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Space Pressed");
-        }
     }
     private void FixedUpdate()
     {

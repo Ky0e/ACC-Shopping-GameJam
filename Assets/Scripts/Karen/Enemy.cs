@@ -6,14 +6,14 @@ public class Enemy : MonoBehaviour, IListenerTarget
 {
 
     List<IListener> listeners = new List<IListener>();
-
+    protected bool isDead = false;
 
 
 
     protected void KillEnemy()
     {
-        Debug.Log("Enemy has been killed");
         NotifyListeners();
+        isDead = true;
         Destroy(this.gameObject);
     }
 
@@ -28,5 +28,10 @@ public class Enemy : MonoBehaviour, IListenerTarget
     public void RegisterListener(IListener _listener)
     {
         listeners.Add(_listener);
+    }
+
+    public void UnregisterListener(IListener _listener)
+    {
+        listeners.Remove(_listener);
     }
 }

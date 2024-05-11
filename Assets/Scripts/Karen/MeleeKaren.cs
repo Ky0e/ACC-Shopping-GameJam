@@ -11,7 +11,7 @@ public class MeleeKaren : Enemy
     [field: SerializeField, BoxGroup("Melee Properties")] private float damageAmount = 5f;
     [field: SerializeField, BoxGroup("Melee Properties")] private Component_DamageApplier damageApplier;
     private GameObject target;
-    private bool isShooting;
+    private bool isAttacking;
 
 
     private void Awake()
@@ -31,21 +31,21 @@ public class MeleeKaren : Enemy
         if (isDead) return;
         agent.destination = target.transform.position;
         float distance = Vector3.Distance(agent.transform.position, target.transform.position);
-        if (distance <= agent.stoppingDistance && !isShooting)
+        if (distance <= agent.stoppingDistance && !isAttacking)
         {
-            StartCoroutine("PurseCoroutine");
+            StartCoroutine("AttackCoroutine");
         }
     }
-    IEnumerator PurseCoroutine()
+    IEnumerator AttackCoroutine()
     {
-        isShooting = true;
-        while (isShooting)
+        isAttacking = true;
+        while (isAttacking)
         {
             damageApplier.ApplyDamage(-1, (int)damageAmount);
             float distance = Vector3.Distance(agent.transform.position, target.transform.position);
             if (distance > agent.stoppingDistance)
             {
-                isShooting = false;
+                isAttacking = false;
             }
             yield return new WaitForSeconds(timeBetweenAttacks);
         }

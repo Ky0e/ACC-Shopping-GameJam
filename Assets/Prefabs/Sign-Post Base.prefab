@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99bb1e8c3539d5941ae2c3784d901e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasPrefab: {fileID: 2665502787919667007, guid: 7d81d2c3eb78f024c9cd61a6dc3d7ed6, type: 3}
+  canvasPrefab: {fileID: 2665502787919667007, guid: b37d35c5bcd3dcc4cb8c7616f284245b, type: 3}
   canvasSpawnPoint: {fileID: 3781721178087102959}
   dialogueSet: {fileID: 11400000, guid: e67326d6259fb1f479cb09c48815efb5, type: 2}
   dialogueCanvas: {fileID: 0}

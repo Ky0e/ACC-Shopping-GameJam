@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class RoomEvent_BossRoom : Room, IRoomEvent
 {
-    [SerializeField] private CardSO item;
-    [SerializeField] private List<DoorController> doors;
-    [SerializeField] private EnemySpawner bossSpawner;
+    [Header("Boss Controlls")]
+    [SerializeField, Tooltip("Add multiple spawners for phases")] private List<EnemySpawner> bossSpawners;
 
-
+    private int numberOfPhases;
+    private int currentPhase = 0;
     private bool triggered = false;
+
+    public void Start()
+    {
+        numberOfPhases = bossSpawners.Count;
+    }
 
     public void OnTriggerEnter(Collider _player)
     {
@@ -18,10 +24,10 @@ public class RoomEvent_BossRoom : Room, IRoomEvent
         if (!_player.gameObject.CompareTag("Player")) return;
 
         // Does the room require an item to be in the player's inventory?
-        if (item)
+        if (keyToUnlockDoors)
         {
             Player_Inventory playerInventory = _player.gameObject.GetComponent<Player_Inventory>();
-            if (!playerInventory.HasItem(item)) return;
+            if (!playerInventory.HasItem(keyToUnlockDoors)) return;
         }
 
         // Do the room events
@@ -32,34 +38,33 @@ public class RoomEvent_BossRoom : Room, IRoomEvent
         triggered = true;
     }
 
-    private void LockRoom()
-    {
-        foreach (var door in doors)
-        {
-            door.CloseDoor();
-            door.LockDoor();
-        }
-    }
-
-    private void UnlockRoom()
-    {
-        foreach (DoorController door in doors)
-        {
-            door.UnlockDoor();
-            door.OpenDoor();
-        }
-    }
+    // spawn boss
 
     private void SpawnBoss()
     {
-        GameObject enemy = bossSpawner.SpawnEnemy();
+        // play boss cutscene
+        // play boss music
+        GameObject enemy = bossSpawners[currentPhase].SpawnEnemy();
         enemy.GetComponent<Enemy>().RegisterListener(this);
         RegisterSpawn(enemy);
     }
 
     protected override void EndEvent()
     {
-        UnlockRoom();
+        StepPhase();
+    }
+
+    private void StepPhase()
+    {
+        currentPhase++;
+        if(currentPhase < numberOfPhases)
+        {
+            SpawnBoss();
+        }
+        else
+        {
+            UnlockRoom();
+        }
     }
 }
 

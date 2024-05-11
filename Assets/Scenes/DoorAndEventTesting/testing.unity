@@ -422,9 +422,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f4b4802a0fc164780c045111383e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
-  doors:
-  - {fileID: 694892584}
+  lockDoorsOnEntry: 0
+  keyToUnlockDoors: {fileID: 0}
+  keyIsRemovedOnUse: 1
+  doorsToControl: []
   bossSpawner: {fileID: 611431077}
 --- !u!114 &321768839
 MonoBehaviour:
@@ -556,10 +557,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e60604f317c744aa72dea8b3103906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockDoors: 1
-  item: {fileID: 0}
-  doors:
-  - {fileID: 2093715454}
+  lockDoorsOnEntry: 0
+  keyToUnlockDoors: {fileID: 0}
+  keyIsRemovedOnUse: 1
+  doorsToControl: []
   enemySpawners:
   - {fileID: 1080869157}
   - {fileID: 1296536172}
@@ -1169,6 +1170,7 @@ MonoBehaviour:
   CanAttack: 1
   CanInteract: 1
   MovementAxis: {x: 0, y: 0}
+  RotationAxis: {x: 0, y: 0}
   Attack: 0
   Interact: 0
   ChangedInputToMouseAndKeyboard:

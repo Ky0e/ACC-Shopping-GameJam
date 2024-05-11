@@ -2,6 +2,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 public class Player_Movement : AnimatorBrain
 {
@@ -13,7 +14,7 @@ public class Player_Movement : AnimatorBrain
     [field: SerializeField, BoxGroup("Movement Smoothing Variables"), Range(0f, 5f)] private float dampSpeedDown = .4f;
 
     [field: SerializeField, BoxGroup("Rotation Variables")] private float rotationAmount = 2f;
-    [field: SerializeField, BoxGroup("Rotation Variables"), Range(.01f, 20f)] private float rotationSpeed = 2f;
+    [field: SerializeField, BoxGroup("Rotation Variables"), Range(.01f, 20000f)] private float rotationSpeed = 2f;
 
 
     [Tooltip("How High The Player Remain Above The Ground")]
@@ -86,6 +87,21 @@ public class Player_Movement : AnimatorBrain
 
     private void Update()
     {
+        Vector2 movement = manager_Input.RotationAxis;
+
+        // Get input for rotation from right stick
+        float rotateHorizontal = manager_Input.RotationAxis.x;
+        float rotateVertical = manager_Input.RotationAxis.y;
+
+        // Create movement and rotation vectors
+        Vector3 rotation = new Vector3(rotateHorizontal, 0.0f, rotateVertical);
+
+        // Rotate the character
+        if (rotation != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(rotation, Vector3.up);
+            Character_Visuals.transform.rotation = Quaternion.RotateTowards(Character_Visuals.transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
         //CheckTopAnimation();
 
         //if (character_Animator.layerCount > 1) CheckBottomAnimation();
@@ -97,9 +113,10 @@ public class Player_Movement : AnimatorBrain
 
         OnMove();
         ApplyHover();
-        UpdateUprightForce();
+        //UpdateUprightForce();
 
     }
+
     private void UpdateInputVariables()
     {
         movementAxis = manager_Input.MovementAxis;
@@ -128,25 +145,9 @@ public class Player_Movement : AnimatorBrain
             character_Rigidbody.velocity = Vector3.SmoothDamp(character_Rigidbody.velocity, _direction * walkSpeed * _crouchMultiplier, ref currentVelocity, dampSpeedUp);
         }
         else character_Rigidbody.velocity = Vector3.SmoothDamp(character_Rigidbody.velocity, Vector3.zero * _crouchMultiplier, ref currentVelocity, dampSpeedDown);
-        RotatePlayer();
+        
     }
-
-    private void RotatePlayer()
-    {
-        // Calculate the target rotation based on the movement axis
-        Vector3 _axis = movementAxis;
-
-        if (_axis.magnitude > movementThreshold)
-        {
-            float _turnAMT = Mathf.Clamp((rotationAmount * _axis.x), -90, 90);
-            _turnAMT = _axis.y < 0 ? (_turnAMT * -1) + -180 : _axis.y >= 0 ? _turnAMT + 0f : _turnAMT + 0;
-
-            Quaternion targetRotation = Quaternion.Euler(new(0f, _turnAMT, 0f));
-
-            // Smoothly interpolate between the current rotation and the target rotation
-            Character_Visuals.transform.rotation = Quaternion.Lerp(Character_Visuals.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
-    }
+    
     #endregion
 
     #region Keeping The Character Upright Methods

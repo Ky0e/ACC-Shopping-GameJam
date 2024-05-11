@@ -43,4 +43,5 @@ public class Enemy : MonoBehaviour, IListenerTarget, IDestructible
             _spawner.GenerateLoot();
         }
     }
+
 }

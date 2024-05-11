@@ -2074,9 +2074,10 @@ GameObject:
   - component: {fileID: 1294387746}
   - component: {fileID: 1294387745}
   - component: {fileID: 1294387744}
+  - component: {fileID: 1294387748}
   m_Layer: 0
   m_Name: Bonk Stick
-  m_TagString: Untagged
+  m_TagString: BonkStick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2197,6 +2198,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294387742}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1294387748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294387742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5eda54390289144b4d9e352eb2585e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackCollider: {fileID: 1294387744}
+  shouldDeactivate: 0
 --- !u!114 &1296536172 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -4348174975596111685, guid: 03f861b8b12447c45b29197beccfa734, type: 3}

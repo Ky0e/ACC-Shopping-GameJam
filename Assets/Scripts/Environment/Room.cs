@@ -19,10 +19,17 @@ public abstract class Room : MonoBehaviour, IListener
 
     public void Notify(GameObject _messenger)
     {
-        roomEnemiesToTrack.Remove(_messenger);
-        if (roomEnemiesToTrack.Count == 0)
+        if(roomEnemiesToTrack.Contains(_messenger))
         {
-            EndEvent();
+            roomEnemiesToTrack.Remove(_messenger);
+            if (roomEnemiesToTrack.Count == 0)
+            {
+                EndEvent();
+            }
+        }
+        else
+        {
+            roomEnemiesToTrack.Add(_messenger);
         }
     }
 

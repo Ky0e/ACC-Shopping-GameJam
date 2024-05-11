@@ -3,15 +3,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BasicKaren : Enemy
+public class MeleeKaren : Enemy
 {
     [field: SerializeField, BoxGroup("Navigation Properties"), ReadOnly] private NavMeshAgent agent;
     [field: SerializeField, BoxGroup("Navigation Properties")] private float timeBetweenAttacks;
     [field: SerializeField, BoxGroup("Navigation Properties")] private float distanceFromTarget;
-    [field: SerializeField, BoxGroup("Ranged Attack Properties")] private GameObject pursePrefab;
-    [field: SerializeField, BoxGroup("Ranged Attack Properties")] private Transform firePoint;
-    [field: SerializeField, BoxGroup("Ranged Attack Properties")] private float projectileForce;
-    [field: SerializeField, BoxGroup("Ranged Attack Properties")] private float shootRange;
+    [field: SerializeField, BoxGroup("Melee Properties")] private float damageAmount = 5f;
+    [field: SerializeField, BoxGroup("Melee Properties")] private Component_DamageApplier damageApplier;
     private GameObject target;
     private bool isShooting;
 
@@ -31,7 +29,6 @@ public class BasicKaren : Enemy
         }
 
         if (isDead) return;
-        firePoint.LookAt(target.transform.position);
         agent.destination = target.transform.position;
         float distance = Vector3.Distance(agent.transform.position, target.transform.position);
         if (distance <= agent.stoppingDistance && !isShooting)
@@ -44,21 +41,14 @@ public class BasicKaren : Enemy
         isShooting = true;
         while (isShooting)
         {
-            Fire();
+            damageApplier.ApplyDamage(-1, (int)damageAmount);
             float distance = Vector3.Distance(agent.transform.position, target.transform.position);
             if (distance > agent.stoppingDistance)
             {
                 isShooting = false;
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(timeBetweenAttacks);
         }
     }
-
-    private void Fire()
-    {
-        Debug.Log("Fire");
-        Rigidbody rb = Instantiate(pursePrefab,firePoint.position, firePoint.rotation).GetComponent<Rigidbody>();
-        Vector3 force = rb.transform.forward * projectileForce;
-        rb.AddForce(force, ForceMode.Impulse);
-    }
 }
+

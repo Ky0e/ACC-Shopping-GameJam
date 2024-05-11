@@ -145,7 +145,6 @@ public class Player_Movement : AnimatorBrain
             character_Rigidbody.velocity = Vector3.SmoothDamp(character_Rigidbody.velocity, _direction * walkSpeed * _crouchMultiplier, ref currentVelocity, dampSpeedUp);
         }
         else character_Rigidbody.velocity = Vector3.SmoothDamp(character_Rigidbody.velocity, Vector3.zero * _crouchMultiplier, ref currentVelocity, dampSpeedDown);
-        
     }
     
     #endregion

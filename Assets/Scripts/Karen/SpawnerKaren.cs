@@ -74,9 +74,9 @@ public class SpawnerKaren : Enemy
                     // Instantiate a random Karen enemy from the list at the random position
                     GameObject randomKaren = karensToSpawn[Random.Range(0, karensToSpawn.Count)];
                     GameObject _tempKaren = Instantiate(randomKaren, randomPosition, Quaternion.identity);
-                    foreach (var _listener in listeners)
+                    foreach (IListener _listener in listeners)
                     {
-                        RegisterListener(_listener);
+                        _tempKaren.GetComponent<Enemy>().RegisterListener(_listener);
                         _listener.Notify(_tempKaren);
                     }
                     

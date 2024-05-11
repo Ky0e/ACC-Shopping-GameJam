@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bde20584e88ce048bfdf2141a0df3d5, type: 3}
+  m_Name: Demo_Dialogue
+  m_EditorClassIdentifier: 
+  Items:
+  - {fileID: 11400000, guid: 1166daf5f9947be4d8cb9cd586ccfb7a, type: 2}
+  followSpecificPath: 0
+  Path:
+  - {fileID: 0}
+  currentDialoguePathSet: 0
+  currentDialogueInPath: 0
+  currentDialogueSet: 0
+  currentDialogue: 0
+  isFirstDialogueOption: 1

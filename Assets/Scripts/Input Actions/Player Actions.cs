@@ -37,9 +37,27 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Rotate"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""3d0eabff-ba30-4dfa-a332-e44137370ff7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""1278e7a8-16ce-445d-a25c-73c7a5c2acfe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""43375883-3d73-4fc3-992e-527d84db17db"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -112,6 +130,72 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right Stick"",
+                    ""id"": ""9d98a1f8-5ebe-4968-a5e8-305420d60a44"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d9e1fa35-5f2f-430c-aa33-7a0858fbcc4f"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""358602b0-7be4-4603-8025-f863463cac8f"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ef56f9f0-c490-481c-befc-eaac9192a872"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""4a01e717-d77d-4df6-b57e-55a5b872d9cf"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b572d763-d77a-44a2-a794-1eda4bd98b84"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -121,7 +205,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
+        m_Gameplay_Rotate = m_Gameplay.FindAction("Rotate", throwIfNotFound: true);
         m_Gameplay_Sprint = m_Gameplay.FindAction("Sprint", throwIfNotFound: true);
+        m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -184,13 +270,17 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Movement;
+    private readonly InputAction m_Gameplay_Rotate;
     private readonly InputAction m_Gameplay_Sprint;
+    private readonly InputAction m_Gameplay_Attack;
     public struct GameplayActions
     {
         private @PlayerActions m_Wrapper;
         public GameplayActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
+        public InputAction @Rotate => m_Wrapper.m_Gameplay_Rotate;
         public InputAction @Sprint => m_Wrapper.m_Gameplay_Sprint;
+        public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -203,9 +293,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @Rotate.started += instance.OnRotate;
+            @Rotate.performed += instance.OnRotate;
+            @Rotate.canceled += instance.OnRotate;
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -213,9 +309,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @Rotate.started -= instance.OnRotate;
+            @Rotate.performed -= instance.OnRotate;
+            @Rotate.canceled -= instance.OnRotate;
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -236,6 +338,8 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }

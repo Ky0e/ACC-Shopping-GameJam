@@ -9,6 +9,7 @@ public class InputReader : MonoBehaviour
     [field: SerializeField] private bool CanAttack = true;
     [field: SerializeField] private bool CanInteract = true;
     [HideInInspector] public Vector2 MovementAxis;
+    [HideInInspector] public Vector2 RotationAxis;
     [HideInInspector] public bool Attack = false;
     [HideInInspector] public bool Interact = false;
 
@@ -28,8 +29,9 @@ public class InputReader : MonoBehaviour
         controls.Gameplay.Enable();
 
         controls.Gameplay.Movement.performed += ctx => OnMove(ctx);
-        //controls.Gameplay.Attack.performed += ctx => OnAttack(ctx);
-        //controls.Gameplay.Attack.canceled += ctx => OnAttackEnded(ctx);
+        controls.Gameplay.Rotate.performed += ctx => OnRotate(ctx);
+        controls.Gameplay.Attack.performed += ctx => OnAttack(ctx);
+        controls.Gameplay.Attack.canceled += ctx => OnAttackEnded(ctx);
         //controls.Gameplay.Interact.performed += ctx => OnInteract(ctx);
         //controls.Gameplay.Interact.canceled += ctx => OnInteractEnded(ctx);
     }
@@ -64,6 +66,12 @@ public class InputReader : MonoBehaviour
         MovementAxis = ctx.ReadValue<Vector2>();
         GetDeviceNew(ctx);
     }
+    private void OnRotate(InputAction.CallbackContext ctx)
+    {
+        RotationAxis = ctx.ReadValue<Vector2>();
+        GetDeviceNew(ctx);
+    }
+
 
     private void GetDeviceNew(InputAction.CallbackContext ctx)
     {

@@ -12,7 +12,8 @@ public class SpawnerKaren : Enemy
     [field: SerializeField, BoxGroup("Navigation Properties")] private GameObject target;
     [field: SerializeField, BoxGroup("Spawn Properties")] private float timeBetweenSpawns = 5f;
     [field: SerializeField, BoxGroup("Spawn Properties")] private List<GameObject> karensToSpawn;
-    [field: SerializeField, BoxGroup("Spawn Properties")] private int maxKarensToSpawn;
+    [field: SerializeField, BoxGroup("Spawn Properties")] private int maxKarenBatch;
+    int currentBatchSize = 0;
     private bool isShooting;
     private GameObject playerOBJ;
 
@@ -64,20 +65,31 @@ public class SpawnerKaren : Enemy
             }
             else
             {
-                // Generate a random position around the SpawnerKaren
-                Vector3 randomPosition = RandomNavSphere(transform.position, 10f);
+                if(currentBatchSize < maxKarenBatch)
+                {
+                    currentBatchSize++;
+                    // Generate a random position around the SpawnerKaren
+                    Vector3 randomPosition = RandomNavSphere(transform.position, 10f);
 
-                // Instantiate a random Karen enemy from the list at the random position
-                GameObject randomKaren = karensToSpawn[Random.Range(0, karensToSpawn.Count)];
-                GameObject _tempKaren = Instantiate(randomKaren, randomPosition, Quaternion.identity);
-                foreach(var _listener in listeners) 
-                { 
-                    RegisterListener(_listener);
-                    _listener.Notify(_tempKaren);
+                    // Instantiate a random Karen enemy from the list at the random position
+                    GameObject randomKaren = karensToSpawn[Random.Range(0, karensToSpawn.Count)];
+                    GameObject _tempKaren = Instantiate(randomKaren, randomPosition, Quaternion.identity);
+                    foreach (var _listener in listeners)
+                    {
+                        RegisterListener(_listener);
+                        _listener.Notify(_tempKaren);
+                    }
+                    
+                }
+                else
+                {
+                    yield return new WaitForSeconds(timeBetweenSpawns);
+                    currentBatchSize = 0;
                 }
             }
 
             yield return new WaitForSeconds(timeBetweenAttacks);
+
         }
     }
 

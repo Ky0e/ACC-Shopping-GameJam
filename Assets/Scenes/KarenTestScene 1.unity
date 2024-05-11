@@ -1507,6 +1507,11 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   distanceFromTarget: 8
   target: {fileID: 481497269}
+  timeBetweenSpawns: 5
+  karensToSpawn:
+  - {fileID: 967187906602085260, guid: c8606732a07189547a54ef4f470a4e4b, type: 3}
+  - {fileID: 5661467558705653475, guid: 2221a4ff3430f2745b12716e7cdcd300, type: 3}
+  maxKarensToSpawn: 0
 --- !u!1 &9214260334435165199
 GameObject:
   m_ObjectHideFlags: 0

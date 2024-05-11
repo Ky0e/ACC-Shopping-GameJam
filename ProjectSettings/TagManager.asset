@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - BonkStick
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -28,9 +30,9 @@ TagManager:
   - 
   - 
   - 
+  - Purse
   - 
-  - 
-  - 
+  - BonkStick
   - 
   - 
   - 

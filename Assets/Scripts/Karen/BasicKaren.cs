@@ -15,12 +15,14 @@ public class BasicKaren : Enemy
     private GameObject target;
     private bool isShooting;
 
+        float shotTimer;
 
     private void Awake()
     {
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player");
         agent.stoppingDistance = distanceFromTarget;
+        shotTimer = timeBetweenAttacks;
     }
 
     private void Update()
@@ -30,14 +32,21 @@ public class BasicKaren : Enemy
             KillEnemy();
         }
 
+        shotTimer -= Time.deltaTime;
+        if(shotTimer <= 0 && Vector3.Distance(agent.transform.position, target.transform.position) <= agent.stoppingDistance)
+        { 
+            Fire();
+            shotTimer = timeBetweenAttacks;
+        }
+
         if (isDead) return;
         firePoint.LookAt(target.transform.position);
         agent.destination = target.transform.position;
         float distance = Vector3.Distance(agent.transform.position, target.transform.position);
-        if (distance <= agent.stoppingDistance && !isShooting)
-        {
-            StartCoroutine("PurseCoroutine");
-        }
+        //if (distance <= agent.stoppingDistance && !isShooting)
+        //{
+        //    StartCoroutine("PurseCoroutine");
+        //}
     }
     IEnumerator PurseCoroutine()
     {
@@ -56,7 +65,7 @@ public class BasicKaren : Enemy
 
     private void Fire()
     {
-        Debug.Log("Fire");
+        //Debug.Log("Fire");
         Rigidbody rb = Instantiate(pursePrefab,firePoint.position, firePoint.rotation).GetComponent<Rigidbody>();
         Vector3 force = rb.transform.forward * projectileForce;
         rb.AddForce(force, ForceMode.Impulse);

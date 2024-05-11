@@ -2,37 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Purse : MonoBehaviour
+public class BonkStick : MonoBehaviour
 {
     [SerializeField] float damage;
     [SerializeField] bool friendlyFire = false;
-    [SerializeField] float timeToLive = 2f;
 
-    float timeRemaming;
-
-    private void Start()
-    {
-        timeRemaming = timeToLive;
-    }
-
-    private void Update()
-    {
-        timeRemaming -= Time.deltaTime;
-        if (timeRemaming <= 0) Destroy(gameObject); 
-
-
-    }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.tag == "Player" || friendlyFire)
+        if (collision.collider.CompareTag("Enemy"))
         {
             Component_DamageApplier da = gameObject.GetComponent<Component_DamageApplier>();
-            if(da)
+            if (da)
             {
                 da.ApplyDamage(-1, Mathf.RoundToInt(damage), 0.2f);
             }
-
-            Destroy(gameObject);
         }
     }
 }

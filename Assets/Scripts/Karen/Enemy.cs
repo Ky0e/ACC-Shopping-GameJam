@@ -1,13 +1,22 @@
 
+using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IListenerTarget, IDestructible
+public abstract class Enemy : MonoBehaviour, IListenerTarget, IDestructible
 {
+    [field: SerializeField, BoxGroup("Attributes")] protected float maxHealth;
+
     protected List<IListener> listeners = new List<IListener>();
     protected bool isDead = false;
+    protected Component_Health health;
 
-    protected void KillEnemy()
+    void Start()
+    {
+        health = gameObject.GetComponent<Component_Health>();
+        SetStartingConditions();
+    }
+        protected void KillEnemy()
     {
         NotifyListeners();
         isDead = true;
@@ -34,13 +43,22 @@ public class Enemy : MonoBehaviour, IListenerTarget, IDestructible
 
     public void OnDestroy()
     {
-        Debug.Log("Destroyed");
         //spawnLoot();
         gameObject.TryGetComponent<Component_LootSpawner>(out Component_LootSpawner _spawner);
         if(_spawner)
         {
-            Debug.Log("Karen has a loot spawner");
             _spawner.GenerateLoot();
         }
+    }
+
+    protected void SetStartingConditions()
+    {
+        health.SetHealth(maxHealth);
+        health.OnHealthChanged += CheckHealth;
+    }
+
+    void CheckHealth(float _health)
+    {
+        if (_health <= 0) KillEnemy();
     }
 }

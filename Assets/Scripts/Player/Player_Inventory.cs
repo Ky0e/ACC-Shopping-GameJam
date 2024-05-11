@@ -42,5 +42,8 @@ public class Player_Inventory : MonoBehaviour
         {
             Debug.Log("Item '" + _item.name + "' not found in inventory!");
         }
+
+        // trigger modifier reset/update
+
     }
 }

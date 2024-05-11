@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BasicKaren : MonoBehaviour
+public class BasicKaren : Enemy
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameObject pursePrefab;
@@ -23,6 +21,12 @@ public class BasicKaren : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Space key was pressed - ENEMY");
+            KillEnemy();
+        }
+
         firePoint.LookAt(target.transform.position);
         agent.destination = target.transform.position;
         float distance = Vector3.Distance(agent.transform.position, target.transform.position);

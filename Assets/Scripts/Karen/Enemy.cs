@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IListenerTarget, IDestructible
 {
-
-    List<IListener> listeners = new List<IListener>();
+    protected List<IListener> listeners = new List<IListener>();
     protected bool isDead = false;
-
-
 
     protected void KillEnemy()
     {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomEvent_EnemySpawnRoom : Room, IRoomEvent
@@ -6,7 +7,7 @@ public class RoomEvent_EnemySpawnRoom : Room, IRoomEvent
     [SerializeField] private bool lockDoors;
     [SerializeField] private CardSO item;
     [SerializeField] private List<DoorController> doors;
-    [SerializeField] private List<EnemySpawner> enemies;
+    [SerializeField] private List<EnemySpawner> enemySpawners;
 
     private bool triggered = false;
 
@@ -42,22 +43,25 @@ public class RoomEvent_EnemySpawnRoom : Room, IRoomEvent
 
     private void UnlockRoom()
     {
-        foreach (var door in doors)
+        foreach (DoorController door in doors)
         {
-            door.OpenDoor();
             door.UnlockDoor();
+            door.OpenDoor();
         }
     }
 
     private void SpawnEnemies()
     {
-        foreach (EnemySpawner enemy in enemies)
+        foreach (EnemySpawner enemySpawner in enemySpawners)
         {
-            enemy.SpawnEnemy();
+            GameObject enemy = enemySpawner.SpawnEnemy();
+            enemy.GetComponent<Enemy>().RegisterListener(this);
+            RegisterSpawn(enemy);
         }
     }
 
-    private void EndEvent()
+    
+    protected override void EndEvent()
     {
         UnlockRoom();
     }

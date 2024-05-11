@@ -8,15 +8,9 @@ public class Enemy : MonoBehaviour, IListenerTarget
     List<IListener> listeners = new List<IListener>();
 
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            KillEnemy();
-        }
-    }
 
-    private void KillEnemy()
+
+    protected void KillEnemy()
     {
         Debug.Log("Enemy has been killed");
         NotifyListeners();
@@ -27,7 +21,7 @@ public class Enemy : MonoBehaviour, IListenerTarget
     {
         foreach (var listener in listeners)
         {
-            listener.Notify();
+            listener.Notify(gameObject);
         }
     }
 

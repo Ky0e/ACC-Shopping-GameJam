@@ -21,6 +21,12 @@ public class BasicKaren : Enemy
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Space key was pressed - ENEMY");
+            KillEnemy();
+        }
+
         firePoint.LookAt(target.transform.position);
         agent.destination = target.transform.position;
         float distance = Vector3.Distance(agent.transform.position, target.transform.position);

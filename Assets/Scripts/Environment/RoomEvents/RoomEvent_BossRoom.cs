@@ -41,8 +41,25 @@ public class RoomEvent_BossRoom : Room, IRoomEvent
         }
     }
 
+    private void UnlockRoom()
+    {
+        foreach (DoorController door in doors)
+        {
+            door.UnlockDoor();
+            door.OpenDoor();
+        }
+    }
+
     private void SpawnBoss()
     {
-        bossSpawner.SpawnEnemy();
+        GameObject enemy = bossSpawner.SpawnEnemy();
+        enemy.GetComponent<Enemy>().RegisterListener(this);
+        RegisterSpawn(enemy);
+    }
+
+    protected override void EndEvent()
+    {
+        UnlockRoom();
     }
 }
+

@@ -120,4 +120,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0cf4323fba65f4a8c50cbf205a619d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 967187906602085260, guid: c8606732a07189547a54ef4f470a4e4b, type: 3}
+  enemyPrefab: {fileID: 967187906602085260, guid: 7420469de69e7b143918f817af3c8fd3, type: 3}

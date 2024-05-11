@@ -37,6 +37,13 @@ public class Enemy : MonoBehaviour, IListenerTarget, IDestructible
 
     public void OnDestroy()
     {
+        Debug.Log("Destroyed");
         //spawnLoot();
+        gameObject.TryGetComponent<Component_LootSpawner>(out Component_LootSpawner _spawner);
+        if(_spawner)
+        {
+            Debug.Log("Karen has a loot spawner");
+            _spawner.GenerateLoot();
+        }
     }
 }

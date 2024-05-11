@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IListenerTarget, IDestructible, IDamageable
+public class Enemy : MonoBehaviour, IListenerTarget, IDestructible
 {
     protected List<IListener> listeners = new List<IListener>();
     protected bool isDead = false;
@@ -42,10 +42,5 @@ public class Enemy : MonoBehaviour, IListenerTarget, IDestructible, IDamageable
             Debug.Log("Karen has a loot spawner");
             _spawner.GenerateLoot();
         }
-    }
-
-    public void TakeDamage(int damageAmount)
-    {
-        Debug.Log("" + damageAmount + " damage dealt to ENEMY");
     }
 }

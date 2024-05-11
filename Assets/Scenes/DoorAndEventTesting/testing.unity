@@ -526,7 +526,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockDoorsOnEntry: 1
   itemRequiredToStartRoomEvent: {fileID: 0}
-  keyIsRemovedOnUse: 1
   doorsToControl:
   - {fileID: 694892584}
   bossSpawners:
@@ -664,7 +663,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockDoorsOnEntry: 0
   itemRequiredToStartRoomEvent: {fileID: 11400000, guid: 1fa69b08e9b015d448c6c415dd8e21b4, type: 2}
-  keyIsRemovedOnUse: 1
   doorsToControl: []
   enemySpawners:
   - {fileID: 1080869157}
@@ -991,6 +989,7 @@ MonoBehaviour:
   isLocked: 0
   isOpen: 1
   key: {fileID: 0}
+  keyIsRemovedOnUse: 1
 --- !u!65 &694892585
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1131,6 +1130,7 @@ MonoBehaviour:
   isLocked: 1
   isOpen: 0
   key: {fileID: 11400000, guid: 8ed9e5c7b2efa4742907ebe07ff0b670, type: 2}
+  keyIsRemovedOnUse: 1
 --- !u!65 &698452089
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1899,6 +1899,8 @@ GameObject:
   - component: {fileID: 1278983971}
   - component: {fileID: 1278983970}
   - component: {fileID: 1278983974}
+  - component: {fileID: 1278983976}
+  - component: {fileID: 1278983975}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Player
@@ -2023,6 +2025,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: 1fa69b08e9b015d448c6c415dd8e21b4, type: 2}
+--- !u!114 &1278983975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278983969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b5d6e80c59ec84c8068fc2a5fb3c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  debugHealthMeter: 0
+--- !u!114 &1278983976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278983969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098c385f2d194c54bb49c577b345484e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &1294387742
 GameObject:
   m_ObjectHideFlags: 0
@@ -3656,6 +3689,7 @@ MonoBehaviour:
   isLocked: 0
   isOpen: 0
   key: {fileID: 0}
+  keyIsRemovedOnUse: 1
 --- !u!208 &2093715455
 NavMeshObstacle:
   m_ObjectHideFlags: 0

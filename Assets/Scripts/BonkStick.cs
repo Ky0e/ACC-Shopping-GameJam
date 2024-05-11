@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class BonkStick : MonoBehaviour
 {
-    public void OnCollisionEnter(Collision collision)
+    [SerializeField] float damage;
+    [SerializeField] bool friendlyFire = false;
+
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.ToString());
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            Component_DamageApplier da = gameObject.GetComponent<Component_DamageApplier>();
+            if (da)
+            {
+                da.ApplyDamage(-1, Mathf.RoundToInt(damage), 0.2f);
+            }
+        }
     }
 }

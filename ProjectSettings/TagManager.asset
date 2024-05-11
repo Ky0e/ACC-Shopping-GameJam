@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - BonkStick
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -29,9 +30,9 @@ TagManager:
   - 
   - 
   - 
+  - Purse
   - 
-  - 
-  - 
+  - BonkStick
   - 
   - 
   - 

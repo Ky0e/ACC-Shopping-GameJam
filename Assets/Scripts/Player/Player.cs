@@ -17,7 +17,7 @@ public class Player : MonoBehaviour, IDestructible
 
     void CheckHealth(float _health)
     {
-        KillPlayer();
+        if(_health <= 0) KillPlayer();
     }
 
     private void KillPlayer()

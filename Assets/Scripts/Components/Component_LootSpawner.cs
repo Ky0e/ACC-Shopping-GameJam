@@ -25,6 +25,18 @@ public class Component_LootSpawner : MonoBehaviour
 
     private void Update()
     {
+        
+    }
+
+    public void GenerateLoot()
+    {
+        Debug.LogWarning("List Start");
+        List<LootItem> _itemList = roomTable.GenerateRandomLoot(constantNumberToSpawn);
+        foreach (LootItem item in _itemList)
+        {
+            Debug.Log(item.ItemName);
+        }
+        Debug.LogWarning("List End");
     }
 
 

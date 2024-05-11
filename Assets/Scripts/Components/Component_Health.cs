@@ -19,7 +19,6 @@ public class Component_Health : MonoBehaviour, IDamageable
     public void ResetHealthButtonTest() => SetHealth(0);
 
 
-
     /// <summary>
     /// Increases The Health By The Specified Amount
     /// </summary>
@@ -54,6 +53,7 @@ public class Component_Health : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damageAmount)
     {
-        Debug.Log("Damage dealt to player for " + damageAmount + "!!");
+        Debug.Log("Damage dealt to OWNER for " + damageAmount + "!!");
+        DecreaseHealth(damageAmount);
     }
 }

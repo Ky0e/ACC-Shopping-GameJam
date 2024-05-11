@@ -5,17 +5,23 @@ using UnityEngine;
 public abstract class Room : MonoBehaviour, IListener
 {
 
-    private List<GameObject> enemyObjects = new List<GameObject>();
+    [Header("Door Controlls")]
+    [SerializeField, Tooltip("Should the doors lock on entry?")] protected bool lockDoorsOnEntry;
+    [SerializeField, Tooltip("What item unlocks the door?")] protected CardSO keyToUnlockDoors;
+    [SerializeField, Tooltip("Is the item removed on use??")] protected bool keyIsRemovedOnUse = true;
+    [SerializeField, Tooltip("Doors to lock/unlock")] protected List<DoorController> doorsToControl;
+
+    private List<GameObject> roomEnemiesToTrack = new List<GameObject>();
 
     protected void RegisterSpawn(GameObject _enemy)
     {
-        enemyObjects.Add(_enemy);
+        roomEnemiesToTrack.Add(_enemy);
     }
 
     public void Notify(GameObject _messenger)
     {
-        enemyObjects.Remove(_messenger);
-        if (enemyObjects.Count == 0)
+        roomEnemiesToTrack.Remove(_messenger);
+        if (roomEnemiesToTrack.Count == 0)
         {
             EndEvent();
         }
@@ -23,9 +29,27 @@ public abstract class Room : MonoBehaviour, IListener
 
     public void OnDestroy()
     {
-        foreach (var enemy in enemyObjects)
+        foreach (var enemy in roomEnemiesToTrack)
         {
             enemy.GetComponent<Enemy>().UnregisterListener(this);
+        }
+    }
+
+    protected void LockRoom()
+    {
+        foreach (var door in doorsToControl)
+        {
+            door.CloseDoor();
+            door.LockDoor();
+        }
+    }
+
+    protected void UnlockRoom()
+    {
+        foreach (DoorController door in doorsToControl)
+        {
+            door.UnlockDoor();
+            door.OpenDoor();
         }
     }
 

@@ -573,7 +573,7 @@ PrefabInstance:
     - target: {fileID: -4348174975596111685, guid: 03f861b8b12447c45b29197beccfa734, type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 967187906602085260, guid: b3c99727c997e7849b14af0330561eb4, type: 3}
+      objectReference: {fileID: 1223648949278004563, guid: e284cf5ed4b81654da1206c8467a6494, type: 3}
     - target: {fileID: 52938191863594781, guid: 03f861b8b12447c45b29197beccfa734, type: 3}
       propertyPath: m_Name
       value: Spawner
@@ -665,9 +665,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e60604f317c744aa72dea8b3103906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockDoorsOnEntry: 0
+  lockDoorsOnEntry: 1
   itemRequiredToStartRoomEvent: {fileID: 11400000, guid: 1fa69b08e9b015d448c6c415dd8e21b4, type: 2}
-  doorsToControl: []
+  doorsToControl:
+  - {fileID: 2093715454}
   enemySpawners:
   - {fileID: 1080869157}
   - {fileID: 1296536172}

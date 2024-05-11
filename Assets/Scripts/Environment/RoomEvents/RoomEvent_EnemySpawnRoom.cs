@@ -17,10 +17,10 @@ public class RoomEvent_EnemySpawnRoom : Room, IRoomEvent
         if (!_player.gameObject.CompareTag("Player")) return;
 
         // Does the room require an item to be in the player's inventory?
-        if (keyToUnlockDoors)
+        if (itemRequiredToStartRoomEvent)
         {
             Player_Inventory playerInventory = _player.gameObject.GetComponent<Player_Inventory>();
-            if (!playerInventory.HasItem(keyToUnlockDoors)) return;
+            if (!playerInventory.HasItem(itemRequiredToStartRoomEvent)) return;
         }
             
         // Do the room events

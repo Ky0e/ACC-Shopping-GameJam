@@ -32,8 +32,8 @@ public class InputReader : MonoBehaviour
         controls.Gameplay.Rotate.performed += ctx => OnRotate(ctx);
         controls.Gameplay.Attack.performed += ctx => OnAttack(ctx);
         controls.Gameplay.Attack.canceled += ctx => OnAttackEnded(ctx);
-        //controls.Gameplay.Interact.performed += ctx => OnInteract(ctx);
-        //controls.Gameplay.Interact.canceled += ctx => OnInteractEnded(ctx);
+        controls.Gameplay.Interact.performed += ctx => OnInteract(ctx);
+        controls.Gameplay.Interact.canceled += ctx => OnInteractEnded(ctx);
     }
 
 

@@ -2,19 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDestructible
 {
+    [SerializeField] private float maxHealth = 100;
+    Component_Health health;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        
+        health = gameObject.GetComponent<Component_Health>();
+        health.SetHealth(maxHealth);
+
+        health.OnHealthChanged += CheckHealth;
+    }    
+
+    void CheckHealth(float _health)
+    {
+        KillPlayer();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void KillPlayer()
     {
-        
+        Debug.Log("PLAYER died!");
+    }
+
+    public void OnDestroy()
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -2030,6 +2030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: 1fa69b08e9b015d448c6c415dd8e21b4, type: 2}
+  - {fileID: 11400000, guid: 8ed9e5c7b2efa4742907ebe07ff0b670, type: 2}
 --- !u!114 &1278983975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2076,7 +2077,7 @@ GameObject:
   - component: {fileID: 1294387744}
   - component: {fileID: 1294387748}
   - component: {fileID: 1294387749}
-  m_Layer: 0
+  m_Layer: 25
   m_Name: Bonk Stick
   m_TagString: BonkStick
   m_Icon: {fileID: 0}
@@ -2211,7 +2212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5eda54390289144b4d9e352eb2585e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackCollider: {fileID: 2027111852}
+  AttackCollider: {fileID: 1294387744}
   shouldDeactivate: 0
 --- !u!114 &1294387749
 MonoBehaviour:
@@ -2225,6 +2226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4935ccaae76dd42b2d7ec8f00ebd3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  friendlyFire: 0
 --- !u!114 &1296536172 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -4348174975596111685, guid: 03f861b8b12447c45b29197beccfa734, type: 3}
@@ -3356,7 +3359,7 @@ GameObject:
   - component: {fileID: 2027111854}
   - component: {fileID: 2027111853}
   - component: {fileID: 2027111852}
-  m_Layer: 0
+  m_Layer: 25
   m_Name: Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}

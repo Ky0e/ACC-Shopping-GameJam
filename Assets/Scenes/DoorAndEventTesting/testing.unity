@@ -570,6 +570,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 540251408}
     m_Modifications:
+    - target: {fileID: -4348174975596111685, guid: 03f861b8b12447c45b29197beccfa734, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 967187906602085260, guid: b3c99727c997e7849b14af0330561eb4, type: 3}
     - target: {fileID: 52938191863594781, guid: 03f861b8b12447c45b29197beccfa734, type: 3}
       propertyPath: m_Name
       value: Spawner

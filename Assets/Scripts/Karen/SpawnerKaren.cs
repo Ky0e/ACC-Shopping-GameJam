@@ -12,6 +12,7 @@ public class SpawnerKaren : Enemy
     [field: SerializeField, BoxGroup("Navigation Properties")] private GameObject target;
     [field: SerializeField, BoxGroup("Spawn Properties")] private float timeBetweenSpawns = 5f;
     [field: SerializeField, BoxGroup("Spawn Properties")] private List<GameObject> karensToSpawn;
+    [field: SerializeField, BoxGroup("Spawn Properties")] private int maxKarensToSpawn;
     private bool isShooting;
     private GameObject playerOBJ;
 
@@ -69,6 +70,7 @@ public class SpawnerKaren : Enemy
                 // Instantiate a random Karen enemy from the list at the random position
                 GameObject randomKaren = karensToSpawn[Random.Range(0, karensToSpawn.Count)];
                 GameObject _tempKaren = Instantiate(randomKaren, randomPosition, Quaternion.identity);
+                foreach(var _listener in listeners) { RegisterListener(_listener); }
             }
 
             yield return new WaitForSeconds(timeBetweenAttacks);

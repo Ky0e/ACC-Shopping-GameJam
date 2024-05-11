@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IListenerTarget
+public class Enemy : MonoBehaviour, IListenerTarget, IDestructible
 {
 
     List<IListener> listeners = new List<IListener>();
@@ -33,5 +33,10 @@ public class Enemy : MonoBehaviour, IListenerTarget
     public void UnregisterListener(IListener _listener)
     {
         listeners.Remove(_listener);
+    }
+
+    public void OnDestroy()
+    {
+        //spawnLoot();
     }
 }

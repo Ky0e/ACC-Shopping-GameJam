@@ -2111,14 +2111,13 @@ GameObject:
   - component: {fileID: 758285657}
   - component: {fileID: 758285656}
   - component: {fileID: 758285663}
-  - component: {fileID: 758285664}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &758285656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2267,27 +2266,6 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &758285664
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758285655}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &829000334
 PrefabInstance:
@@ -2691,6 +2669,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Center: {x: 0, y: 0.5, z: 1.1368684e-13}
+--- !u!114 &1156581579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156581568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e60604f317c744aa72dea8b3103906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockDoorsOnEntry: 0
+  itemRequiredToStartRoomEvent: {fileID: 0}
+  doorsToControl: []
+  enemySpawners: []
 --- !u!1001 &1255429897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3175,6 +3169,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8227314443363736261, guid: f5af8383895a3e24184a17e4a376ad11, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1156581573}
+    - targetCorrespondingSourceObject: {fileID: 8227314443363736261, guid: f5af8383895a3e24184a17e4a376ad11, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1156581579}
     - targetCorrespondingSourceObject: {fileID: 8829544084560591757, guid: f5af8383895a3e24184a17e4a376ad11, type: 3}
       insertIndex: -1
       addedObject: {fileID: 540954013}
@@ -3757,7 +3754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9186261648361712941, guid: 0947b6a43e49dae4a8be2f53e1d2aba9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9186261648361712941, guid: 0947b6a43e49dae4a8be2f53e1d2aba9, type: 3}
       propertyPath: m_TagString

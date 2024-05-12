@@ -1,7 +1,10 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum PlayerProperties
 {
+    None,
     Lives,
     Health,
     Speed,
@@ -38,6 +41,7 @@ public class Player : MonoBehaviour, IDestructible
     private Player_Inventory player_Inventory;
     private Player_Movement player_Movement;
     private Component_Health player_health;
+    private string[] cardSos;
 
 
     Component_Health health;
@@ -49,6 +53,7 @@ public class Player : MonoBehaviour, IDestructible
         player_Inventory = gameObject.GetComponent<Player_Inventory>();
         player_Movement = gameObject.GetComponent<Player_Movement>();
         player_health = gameObject.GetComponent<Component_Health>();
+        cardSos = Enum.GetNames(typeof(eCardType));
     }
 
     void Start()
@@ -57,6 +62,8 @@ public class Player : MonoBehaviour, IDestructible
 
         player_health.SetHealth(MaxHealth);
         player_health.OnHealthChanged += CheckHealth;
+
+        //player_Inventory.OnItemsListUpdated += ResetModifiers;
     }    
 
     void ResetPlayer()
@@ -88,22 +95,23 @@ public class Player : MonoBehaviour, IDestructible
         switch (_property)
         {
             case PlayerProperties.Lives:
-                PlayerLives = (int)_value;
+                PlayerLives += (int)_value;
                 break;
             case PlayerProperties.Health:
-                MaxHealth = _value;
+                MaxHealth += _value;
                 player_health.SetMaxHealth(MaxHealth);
                 if(CurrentHealth > MaxHealth) player_health.SetHealth(MaxHealth);
                 break;
             case PlayerProperties.Speed:
-                Speed = _value;
-                player_Movement.SetMovementValue(E_MovementValues.Speed_Walk, _value);
+                Speed += _value;
+                player_Movement.SetMovementValue(E_MovementValues.Speed_Walk, Speed);
                 break;
             case PlayerProperties.WeaponDamage:
-                bonkStick.GetComponent<BonkStick>().SetBonkStickDamage(_value);
+                WeaponDamage += _value;
+                bonkStick.GetComponent<BonkStick>().SetBonkStickDamage(WeaponDamage);
                 break;
             case PlayerProperties.WeaponRange:
-                WeaponRange = _value;
+                WeaponRange += _value;
                 SetWeaponOrbitDistance(WeaponRange);
                 break;
             case PlayerProperties.DeflectRangedAttacks:
@@ -124,7 +132,13 @@ public class Player : MonoBehaviour, IDestructible
     private void KillPlayer()
     {
         Debug.Log("PLAYER died!");
-        ResetPlayer();
+        ModifyProperty(PlayerProperties.Lives, -1);
+        if(PlayerLives > 0) ResetPlayer();
+        else
+        {
+            Debug.Log("Game Over!");
+            // Game over logic
+        }
     }
 
     public void OnDestroy()
@@ -159,62 +173,56 @@ public class Player : MonoBehaviour, IDestructible
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("Modifying weapon range");
-            ModifyProperty(PlayerProperties.WeaponRange, 10);
+            Debug.Log("Adding Punch Card");
+            player_Inventory.AddItem(player_Inventory.soHub.soCards[(int)eCardType.punchCard]);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Debug.Log("Resetting weapon range");
-            ModifyProperty(PlayerProperties.WeaponRange, STARTING_WEAPON_RANGE);
+            Debug.Log("Removing Punch Card");
+            player_Inventory.RemoveItem(player_Inventory.soHub.soCards[(int)eCardType.punchCard]);
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Debug.Log("Modifying weapon damage");
-            ModifyProperty(PlayerProperties.WeaponDamage, 100);
+            Debug.Log("Adding Reverse Card");
+            player_Inventory.AddItem(player_Inventory.soHub.soCards[(int)eCardType.reverseCard]);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Debug.Log("Resetting weapon damage");
-            ModifyProperty(PlayerProperties.WeaponDamage, STARTING_WEAPON_DAMAGE);
+            Debug.Log("Removing Reverse Card");
+            player_Inventory.RemoveItem(player_Inventory.soHub.soCards[(int)eCardType.reverseCard]);
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha5))
         {
-            Debug.Log("Modifying weapon deflection");
-            ModifyProperty(PlayerProperties.DeflectRangedAttacks, 1);
+            player_Inventory.AddItem(player_Inventory.soHub.soCards[(int)eCardType.punchCard]);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            Debug.Log("Resetting weapon deflection");
-            ModifyProperty(PlayerProperties.DeflectRangedAttacks, 0);
+            player_Inventory.RemoveItem(player_Inventory.soHub.soCards[(int)eCardType.punchCard]);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            Debug.Log("Modifying player speed");
-            ModifyProperty(PlayerProperties.Speed, 60);
+            player_Inventory.AddItem(player_Inventory.soHub.soCards[(int)eCardType.punchCard]);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            Debug.Log("Resetting player speed");
-            ModifyProperty(PlayerProperties.Speed, STARTING_SPEED);
+            player_Inventory.RemoveItem(player_Inventory.soHub.soCards[(int)eCardType.punchCard]);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            Debug.Log("Modifying player health");
-            ModifyProperty(PlayerProperties.Health, 200);
+            player_Inventory.AddItem(player_Inventory.soHub.soCards[(int)eCardType.punchCard]);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            Debug.Log("Resetting player health");
-            ModifyProperty(PlayerProperties.Health, STARTING_HEALTH);
+            player_Inventory.RemoveItem(player_Inventory.soHub.soCards[(int)eCardType.punchCard]);
         }
     }
 

@@ -2178,6 +2178,7 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 1fa69b08e9b015d448c6c415dd8e21b4, type: 2}
   - {fileID: 11400000, guid: 8ed9e5c7b2efa4742907ebe07ff0b670, type: 2}
+  soHub: {fileID: 11400000, guid: 1d49cd2ff08e38f4591791d6d54d2e5c, type: 2}
 --- !u!114 &1278983975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4189,6 +4190,7 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 8ed9e5c7b2efa4742907ebe07ff0b670, type: 2}
   - {fileID: 11400000, guid: 1fa69b08e9b015d448c6c415dd8e21b4, type: 2}
+  soHub: {fileID: 0}
 --- !u!1 &2142426028
 GameObject:
   m_ObjectHideFlags: 0

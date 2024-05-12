@@ -9,7 +9,7 @@ public enum RoomEventType
     Puzzle
 }
 
-public interface IRoomEvent
+public interface ITriggerable
 {
     void OnTriggerEnter(Collider _player);
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Checkpoint : MonoBehaviour, ITriggerable
+public class Checkpoint : MonoBehaviour, ITriggerableObject
 {
     public void Triggered(Collider _collider)
     {

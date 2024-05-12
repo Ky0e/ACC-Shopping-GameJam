@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
-public class RoomEvent_BossRoom : Room, ITriggerable
+public class RoomEvent_BossRoom : Room, ITriggerableObject
 {
     [Header("Boss Controlls")]
     [SerializeField, Tooltip("Add multiple spawners for phases")] private List<EnemySpawner> bossSpawners;

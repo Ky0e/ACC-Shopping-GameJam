@@ -6,7 +6,7 @@ public class TriggerVolume : MonoBehaviour
 
     [SerializeField] private List<GameObject> triggerTarget;
 
-    private ITriggerable trigger;
+    private ITriggerableObject trigger;
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class TriggerVolume : MonoBehaviour
     {
         foreach (GameObject triggerTarget in triggerTarget)
         {
-            trigger = triggerTarget.GetComponent<ITriggerable>();
+            trigger = triggerTarget.GetComponent<ITriggerableObject>();
             if (trigger != null)
             {
                 trigger.Triggered(other);

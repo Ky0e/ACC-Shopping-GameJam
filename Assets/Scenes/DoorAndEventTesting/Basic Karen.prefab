@@ -77,7 +77,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   timeBetweenAttacks: 3
   distanceFromTarget: 10
-  pursePrefab: {fileID: 9123051877414323988, guid: bf2e4a9fba8bf5542b5602688b86369d, type: 3}
+  pursePrefab: {fileID: 9123051877414323988, guid: e4b3d6f8da4af1c4f8be09e4e2f3356b, type: 3}
   firePoint: {fileID: 153535075783309645}
   projectileForce: 50
   shootRange: 10.08

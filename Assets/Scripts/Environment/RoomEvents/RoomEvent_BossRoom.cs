@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
-public class RoomEvent_BossRoom : Room, IRoomEvent
+public class RoomEvent_BossRoom : Room, ITriggerable
 {
     [Header("Boss Controlls")]
     [SerializeField, Tooltip("Add multiple spawners for phases")] private List<EnemySpawner> bossSpawners;
@@ -17,7 +17,7 @@ public class RoomEvent_BossRoom : Room, IRoomEvent
         numberOfPhases = bossSpawners.Count;
     }
 
-    public void OnTriggerEnter(Collider _player)
+    public void Triggered(Collider _player)
     {
         // Fail fast conditions
         if (triggered) return;

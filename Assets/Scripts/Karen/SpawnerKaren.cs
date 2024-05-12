@@ -19,7 +19,7 @@ public class SpawnerKaren : Enemy
 
     private void Awake()
     {
-        agent = this.gameObject.GetComponent<NavMeshAgent>();
+        agent = gameObject.GetComponent<NavMeshAgent>();
         playerOBJ = GameObject.FindGameObjectWithTag("Player");
         // agent.stoppingDistance = distanceFromTarget;
     }

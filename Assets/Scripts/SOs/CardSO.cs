@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum eCardType { postCard, idCard, greetingCard, giftCard, creditCard, punchCard, reverseCard, passportCard, timeCard}
+public enum eCardType { postCard, idCard, greetingCard, giftCard, creditCard, punchCard, reverseCard, passportCard, timeCard, magicTheGatheringCard, pokemonCard}
 [CreateAssetMenu(fileName = "SO", menuName = "Scriptable Objects/Card Object", order = 1)]
 public class CardSO : ScriptableObject
 {

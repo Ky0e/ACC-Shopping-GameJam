@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class Room : MonoBehaviour, IListener
 {
-
+    [Header("Room Setup")]
+    [SerializeField] private GameObject triggerVolume;
     [Header("Door Controlls")]
     [SerializeField, Tooltip("Should the doors lock on entry?")] protected bool lockDoorsOnEntry;
     [SerializeField, Tooltip("What item unlocks the door?")] protected CardSO itemRequiredToStartRoomEvent;

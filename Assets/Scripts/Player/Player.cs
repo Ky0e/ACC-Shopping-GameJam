@@ -14,24 +14,24 @@ public class Player : MonoBehaviour, IDestructible
 {
     [Header("Player Properties")]
     [SerializeField] private const string PLAYER_NAME = "Player";
-    [SerializeField] private const int STARTING_PLAYER_LIVES = 3;
+    [SerializeField] private const float STARTING_PLAYER_LIVES = 3;
     [SerializeField] private const float STARTING_HEALTH = 100;
     [SerializeField] private const float STARTING_SPEED = 5;
     [SerializeField] private const float STARTING_WEAPON_DAMAGE = 10;
     [SerializeField] private const float STARTING_WEAPON_RANGE = 4;
-    [SerializeField] private const bool STARTING_DEFLECT_RANGED_ATTACKS = false;
+    [SerializeField] private const float STARTING_DEFLECT_RANGED_ATTACKS = 0f;
 
     [Header("References")]
     [SerializeField] private GameObject bonkStick;
 
     [Header("Current Game Properties")]
     [SerializeField] public float MaxHealth {  get; private set;}
-    [SerializeField] public int PlayerLives { get; private set; }
+    [SerializeField] public float PlayerLives { get; private set; }
     [SerializeField] public float CurrentHealth { get; private set; }
     [SerializeField] public float Speed { get; private set; }
     [SerializeField] public float WeaponDamage { get; private set; }
     [SerializeField] public float WeaponRange { get; private set; }
-    [SerializeField] public bool DeflectRangedAttacks { get; private set; }
+    [SerializeField] public float DeflectRangedAttacks { get; private set; }
 
     // References to player components
     private Player_Interactor player_Interactor;
@@ -78,9 +78,9 @@ public class Player : MonoBehaviour, IDestructible
     {
         MaxHealth = STARTING_HEALTH;
         Speed = STARTING_SPEED;
-        bonkStick.GetComponent<BonkStick>().SetBonkStickDamage(STARTING_WEAPON_DAMAGE);
+        ModifyProperty(PlayerProperties.WeaponDamage, STARTING_WEAPON_DAMAGE);
         ModifyProperty(PlayerProperties.WeaponRange, STARTING_WEAPON_RANGE);
-        DeflectRangedAttacks = STARTING_DEFLECT_RANGED_ATTACKS;
+        ModifyProperty(PlayerProperties.DeflectRangedAttacks, STARTING_DEFLECT_RANGED_ATTACKS);
     }
     
     public void ModifyProperty(PlayerProperties _property, float _value)
@@ -104,8 +104,8 @@ public class Player : MonoBehaviour, IDestructible
                 SetWeaponOrbitDistance(WeaponRange);
                 break;
             case PlayerProperties.DeflectRangedAttacks:
-                if(_value > 0 ) DeflectRangedAttacks = true;
-                else DeflectRangedAttacks = false;
+                DeflectRangedAttacks = _value;
+                bonkStick.GetComponent<BonkStick>().SetDeflectRangedAttacks(DeflectRangedAttacks > 0);
                 break;
             default:
                 break;
@@ -176,6 +176,18 @@ public class Player : MonoBehaviour, IDestructible
         {
             Debug.Log("Resetting weapon damage");
             ModifyProperty(PlayerProperties.WeaponDamage, STARTING_WEAPON_DAMAGE);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Debug.Log("Modifying weapon deflection");
+            ModifyProperty(PlayerProperties.DeflectRangedAttacks, 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            Debug.Log("Resetting weapon deflection");
+            ModifyProperty(PlayerProperties.DeflectRangedAttacks, 0);
         }
     }
 

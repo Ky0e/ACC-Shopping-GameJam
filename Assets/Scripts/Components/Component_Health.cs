@@ -53,6 +53,7 @@ public class Component_Health : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damageAmount)
     {
+        Debug.Log("LET ME SEE THE MANAGER");
         DecreaseHealth(damageAmount);
     }
 }

@@ -343,12 +343,12 @@ GameObject:
   - component: {fileID: 7608476518954344434}
   - component: {fileID: 6415328242524211435}
   - component: {fileID: 2958228676977128594}
-  - component: {fileID: 603620755447714966}
   - component: {fileID: 1832645509308899887}
   - component: {fileID: 5475857905703730004}
+  - component: {fileID: 1083745234309630281}
   m_Layer: 25
   m_Name: Bonk Stick
-  m_TagString: Untagged
+  m_TagString: BonkStick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -362,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 8714894895544112795}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 4}
+  m_LocalPosition: {x: 0, y: 0.25, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -448,8 +448,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 2
---- !u!135 &603620755447714966
-SphereCollider:
+--- !u!114 &1832645509308899887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714894895544112795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5eda54390289144b4d9e352eb2585e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackCollider: {fileID: 1083745234309630281}
+  shouldDeactivate: 0
+--- !u!114 &5475857905703730004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714894895544112795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4935ccaae76dd42b2d7ec8f00ebd3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  friendlyFire: 0
+--- !u!65 &1083745234309630281
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -467,36 +495,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 3
+  m_Size: {x: 1, y: 2.49, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1832645509308899887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8714894895544112795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d5eda54390289144b4d9e352eb2585e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackCollider: {fileID: 603620755447714966}
-  shouldDeactivate: 0
---- !u!114 &5475857905703730004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8714894895544112795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed4935ccaae76dd42b2d7ec8f00ebd3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  friendlyFire: 0
 --- !u!1 &8924148620663739478
 GameObject:
   m_ObjectHideFlags: 0

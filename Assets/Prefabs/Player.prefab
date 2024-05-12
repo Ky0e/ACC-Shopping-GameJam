@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 4403777869364480673}
   - component: {fileID: 1263996037734348989}
   - component: {fileID: 6703472870274083660}
-  m_Layer: 0
+  m_Layer: 25
   m_Name: Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 6415328242524211435}
   - component: {fileID: 2958228676977128594}
   - component: {fileID: 603620755447714966}
-  m_Layer: 0
+  m_Layer: 25
   m_Name: Bonk Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}

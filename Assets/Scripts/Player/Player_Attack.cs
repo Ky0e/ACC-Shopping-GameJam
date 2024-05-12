@@ -18,13 +18,15 @@ public class Player_Attack : MonoBehaviour
         rotationAxis = manager_Input.RotationAxis;
 
         // If there's input, start the swing
-        if (rotationAxis.magnitude > 0.01f)
-        {
-            float angle = (90 * rotationAxis.x) + transform.localRotation.y;
-            Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
-            guillotinePivot.rotation = Quaternion.RotateTowards(guillotinePivot.rotation, targetRotation, swingSpeed * Time.deltaTime);
-        }
+        //if (rotationAxis.magnitude > 0.01f)
+        //{
+        //    float angle = (90 * rotationAxis.x) + transform.localRotation.y;
+        //    Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
+        //    guillotinePivot.rotation = Quaternion.RotateTowards(guillotinePivot.rotation, targetRotation, swingSpeed * Time.deltaTime);
+        //}
     }
+
+
 }
 
 /*    [field: SerializeField] private InputReader manager_Input;

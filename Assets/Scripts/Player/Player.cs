@@ -18,8 +18,11 @@ public class Player : MonoBehaviour, IDestructible
     [SerializeField] private const float STARTING_HEALTH = 100;
     [SerializeField] private const float STARTING_SPEED = 5;
     [SerializeField] private const float STARTING_WEAPON_DAMAGE = 10;
-    [SerializeField] private const float STARTING_WEAPON_RANGE = 5;
+    [SerializeField] private const float STARTING_WEAPON_RANGE = 4;
     [SerializeField] private const bool STARTING_DEFLECT_RANGED_ATTACKS = false;
+
+    [Header("References")]
+    [SerializeField] private GameObject bonkStick;
 
     [Header("Current Game Properties")]
     [SerializeField] public float MaxHealth {  get; private set;}
@@ -30,9 +33,21 @@ public class Player : MonoBehaviour, IDestructible
     [SerializeField] public float WeaponRange { get; private set; }
     [SerializeField] public bool DeflectRangedAttacks { get; private set; }
 
+    // References to player components
+    private Player_Interactor player_Interactor;
+    private Player_Inventory player_Inventory;
+    private Player_Movement player_Movement;
+
 
     Component_Health health;
     [SerializeField] private Transform lastCheckpoint;
+
+    private void Awake()
+    {
+        player_Interactor = gameObject.GetComponent<Player_Interactor>();
+        player_Inventory = gameObject.GetComponent<Player_Inventory>();
+        player_Movement = gameObject.GetComponent<Player_Movement>();
+    }
 
     void Start()
     {
@@ -64,7 +79,7 @@ public class Player : MonoBehaviour, IDestructible
         MaxHealth = STARTING_HEALTH;
         Speed = STARTING_SPEED;
         WeaponDamage = STARTING_WEAPON_DAMAGE;
-        WeaponRange = STARTING_WEAPON_RANGE;
+        ModifyProperty(PlayerProperties.WeaponRange, STARTING_WEAPON_RANGE);
         DeflectRangedAttacks = STARTING_DEFLECT_RANGED_ATTACKS;
     }
     
@@ -73,19 +88,20 @@ public class Player : MonoBehaviour, IDestructible
         switch (_property)
         {
             case PlayerProperties.Lives:
-                PlayerLives += (int)_value;
+                PlayerLives = (int)_value;
                 break;
             case PlayerProperties.Health:
-                MaxHealth += _value;
+                MaxHealth = _value;
                 break;
             case PlayerProperties.Speed:
-                Speed += _value;
+                Speed = _value;
                 break;
             case PlayerProperties.WeaponDamage:
-                WeaponDamage += _value;
+                WeaponDamage = _value;
                 break;
             case PlayerProperties.WeaponRange:
-                WeaponRange += _value;
+                WeaponRange = _value;
+                SetWeaponOrbitDistance(WeaponRange);
                 break;
             case PlayerProperties.DeflectRangedAttacks:
                 if(_value > 0 ) DeflectRangedAttacks = true;
@@ -130,5 +146,25 @@ public class Player : MonoBehaviour, IDestructible
         {
             KillPlayer();
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetPlayer();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ModifyProperty(PlayerProperties.WeaponRange, 10);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ModifyProperty(PlayerProperties.WeaponRange, 4);
+        }
+    }
+
+    public void SetWeaponOrbitDistance(float _distance)
+    {
+        bonkStick.transform.localPosition = new Vector3(0f, 0.25f, _distance);
     }
 }

@@ -70,10 +70,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
+  timeBetweenAttacks: 3
+  distanceFromTarget: 6
   pursePrefab: {fileID: 9123051877414323988, guid: bf2e4a9fba8bf5542b5602688b86369d, type: 3}
   firePoint: {fileID: 153535075783309645}
   projectileForce: 50
-  shootRange: 5
+  shootRange: 7
 --- !u!1 &4727022003274724771
 GameObject:
   m_ObjectHideFlags: 0

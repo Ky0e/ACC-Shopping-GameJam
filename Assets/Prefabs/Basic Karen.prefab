@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5412116589819702637}
   - component: {fileID: 6036147650675635159}
   - component: {fileID: 299075918216822338}
+  - component: {fileID: 7272584242931116114}
   m_Layer: 0
   m_Name: Basic Karen
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7251503fe00d54aa2e9b8772a9b368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 10
   agent: {fileID: 0}
   timeBetweenAttacks: 0
   distanceFromTarget: 10
@@ -76,6 +78,24 @@ MonoBehaviour:
   firePoint: {fileID: 153535075783309645}
   projectileForce: 50
   shootRange: 5
+--- !u!114 &7272584242931116114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967187906602085260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e9009588dff1b499c7aba367efe790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomTable: {fileID: 0}
+  spawnRandomNumberOfObjects: 0
+  constantNumberToSpawn: 0
+  randomNumberOfItemsToSpawn: {x: 0, y: 0}
+  explosionForce: 0
+  explosionRange: 0
 --- !u!1 &4727022003274724771
 GameObject:
   m_ObjectHideFlags: 0

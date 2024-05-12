@@ -2049,6 +2049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098c385f2d194c54bb49c577b345484e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bonkStick: {fileID: 1294387742}
   lastCheckpoint: {fileID: 0}
 --- !u!1 &1294387742
 GameObject:

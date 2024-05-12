@@ -2433,7 +2433,8 @@ MonoBehaviour:
   itemRequiredToStartRoomEvent: {fileID: 0}
   doorsToControl:
   - {fileID: 711297}
-  enemySpawners: []
+  enemySpawners:
+  - {fileID: 1822152829}
 --- !u!65 &894959443
 BoxCollider:
   m_ObjectHideFlags: 0

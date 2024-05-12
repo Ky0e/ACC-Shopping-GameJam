@@ -344,6 +344,8 @@ GameObject:
   - component: {fileID: 6415328242524211435}
   - component: {fileID: 2958228676977128594}
   - component: {fileID: 603620755447714966}
+  - component: {fileID: 1832645509308899887}
+  - component: {fileID: 5475857905703730004}
   m_Layer: 25
   m_Name: Bonk Stick
   m_TagString: Untagged
@@ -467,6 +469,34 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1832645509308899887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714894895544112795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5eda54390289144b4d9e352eb2585e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackCollider: {fileID: 603620755447714966}
+  shouldDeactivate: 0
+--- !u!114 &5475857905703730004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714894895544112795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4935ccaae76dd42b2d7ec8f00ebd3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  friendlyFire: 0
 --- !u!1 &8924148620663739478
 GameObject:
   m_ObjectHideFlags: 0

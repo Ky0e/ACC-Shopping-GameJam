@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 4655621000137506118}
   - component: {fileID: 6948361659773392199}
   - component: {fileID: 4094940029522306180}
+  - component: {fileID: 1702757123737047836}
   m_Layer: 0
   m_Name: BossKaren
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,11 +123,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7251503fe00d54aa2e9b8772a9b368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   agent: {fileID: 0}
-  pursePrefab: {fileID: 9123051877414323988, guid: bf2e4a9fba8bf5542b5602688b86369d, type: 3}
+  timeBetweenAttacks: 1
+  distanceFromTarget: 10
+  pursePrefab: {fileID: 9123051877414323988, guid: e4b3d6f8da4af1c4f8be09e4e2f3356b, type: 3}
   firePoint: {fileID: 6463154683632930959}
-  projectileForce: 0
-  shootRange: 0
+  projectileForce: 50
+  shootRange: 10
 --- !u!195 &4094940029522306180
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -149,6 +153,24 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1702757123737047836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4543446291468345884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b5d6e80c59ec84c8068fc2a5fb3c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  debugHealthMeter: 0
 --- !u!1 &8050947937169397529
 GameObject:
   m_ObjectHideFlags: 0

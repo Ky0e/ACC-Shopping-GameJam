@@ -13,50 +13,38 @@ public class BasicKaren : Enemy
     [field: SerializeField, BoxGroup("Ranged Attack Properties")] private float projectileForce;
     [field: SerializeField, BoxGroup("Ranged Attack Properties")] private float shootRange;
     private GameObject target;
-    private bool isShooting;
 
+        float shotTimer;
 
     private void Awake()
     {
-        agent = this.gameObject.GetComponent<NavMeshAgent>();
+        agent = gameObject.GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player");
         agent.stoppingDistance = distanceFromTarget;
+        shotTimer = timeBetweenAttacks;
     }
 
     private void Update()
     {
+        if (isDead) return;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             KillEnemy();
         }
 
-        if (isDead) return;
+        shotTimer -= Time.deltaTime;
+        if(shotTimer <= 0 && Vector3.Distance(agent.transform.position, target.transform.position) <= agent.stoppingDistance)
+        { 
+            Fire();
+            shotTimer = timeBetweenAttacks;
+        }
+
         firePoint.LookAt(target.transform.position);
         agent.destination = target.transform.position;
-        float distance = Vector3.Distance(agent.transform.position, target.transform.position);
-        if (distance <= agent.stoppingDistance && !isShooting)
-        {
-            StartCoroutine("PurseCoroutine");
-        }
-    }
-    IEnumerator PurseCoroutine()
-    {
-        isShooting = true;
-        while (isShooting)
-        {
-            Fire();
-            float distance = Vector3.Distance(agent.transform.position, target.transform.position);
-            if (distance > agent.stoppingDistance)
-            {
-                isShooting = false;
-            }
-            yield return new WaitForSeconds(1f);
-        }
     }
 
     private void Fire()
     {
-        Debug.Log("Fire");
         Rigidbody rb = Instantiate(pursePrefab,firePoint.position, firePoint.rotation).GetComponent<Rigidbody>();
         Vector3 force = rb.transform.forward * projectileForce;
         rb.AddForce(force, ForceMode.Impulse);

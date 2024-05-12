@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Punch Card
   m_EditorClassIdentifier: 
   cardType: 5
+  cardSprite: {fileID: 21300000, guid: e762c1fb39b1a2a418ecb8eb935017ac, type: 3}

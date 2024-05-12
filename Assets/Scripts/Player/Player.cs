@@ -78,7 +78,7 @@ public class Player : MonoBehaviour, IDestructible
     {
         MaxHealth = STARTING_HEALTH;
         Speed = STARTING_SPEED;
-        WeaponDamage = STARTING_WEAPON_DAMAGE;
+        bonkStick.GetComponent<BonkStick>().SetBonkStickDamage(STARTING_WEAPON_DAMAGE);
         ModifyProperty(PlayerProperties.WeaponRange, STARTING_WEAPON_RANGE);
         DeflectRangedAttacks = STARTING_DEFLECT_RANGED_ATTACKS;
     }
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour, IDestructible
                 Speed = _value;
                 break;
             case PlayerProperties.WeaponDamage:
-                WeaponDamage = _value;
+                bonkStick.GetComponent<BonkStick>().SetBonkStickDamage(_value);
                 break;
             case PlayerProperties.WeaponRange:
                 WeaponRange = _value;
@@ -144,22 +144,38 @@ public class Player : MonoBehaviour, IDestructible
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
+            Debug.Log("Killing player");
             KillPlayer();
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            Debug.Log("Resetting player");
             ResetPlayer();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            Debug.Log("Modifying weapon range");
             ModifyProperty(PlayerProperties.WeaponRange, 10);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ModifyProperty(PlayerProperties.WeaponRange, 4);
+            Debug.Log("Resetting weapon range");
+            ModifyProperty(PlayerProperties.WeaponRange, STARTING_WEAPON_RANGE);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Debug.Log("Modifying weapon damage");
+            ModifyProperty(PlayerProperties.WeaponDamage, 100);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Debug.Log("Resetting weapon damage");
+            ModifyProperty(PlayerProperties.WeaponDamage, STARTING_WEAPON_DAMAGE);
         }
     }
 

@@ -3,6 +3,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 
 public class Player_Movement : AnimatorBrain
 {
@@ -46,9 +47,13 @@ public class Player_Movement : AnimatorBrain
     [field: SerializeField, ReadOnly, Foldout("Debug Variables")] public bool IsFacingRight = false;
     [field: SerializeField, ReadOnly, Foldout("Debug Variables")] public bool IsFacingLeft = false;
     [field: SerializeField, ReadOnly, Foldout("Debug Variables")] public bool IsTurning = false;
-
+    [field: SerializeField, ReadOnly, Foldout("Debug Variables")] private List<float> defaultMovementValues;
+    [field: SerializeField, ReadOnly, Foldout("Debug Variables")] private List<float> currentMovementValues;
 
     // Private Variables
+
+    // Lists
+
 
     // Vectors
     private Vector2 movementAxis;
@@ -79,7 +84,7 @@ public class Player_Movement : AnimatorBrain
         direction_Downward = Vector3.down;
         direction_Forward = Vector3.forward;
         direction_Right = Vector3.right;
-
+        SetupMovementValues();
         //InitializeAnimatorBrain(character_Animator.layerCount,
         //                        E_Animations.Idle, character_Animator,
         //                        DefaultAnimation);
@@ -140,13 +145,40 @@ public class Player_Movement : AnimatorBrain
         float _crouchMultiplier = 1f;
         Vector3 _direction = new(movementAxis.x, 0, movementAxis.y);
 
+        //if (_direction.magnitude > movementThreshold)
+        //{
+        //    character_Rigidbody.velocity = Vector3.SmoothDamp(character_Rigidbody.velocity, _direction * walkSpeed * _crouchMultiplier, ref currentVelocity, dampSpeedUp);
+        //}
+        //else character_Rigidbody.velocity = Vector3.SmoothDamp(character_Rigidbody.velocity, Vector3.zero * _crouchMultiplier, ref currentVelocity, dampSpeedDown);
+
+
         if (_direction.magnitude > movementThreshold)
         {
-            character_Rigidbody.velocity = Vector3.SmoothDamp(character_Rigidbody.velocity, _direction * walkSpeed * _crouchMultiplier, ref currentVelocity, dampSpeedUp);
+            Character_Rigidbody.velocity = Vector3.SmoothDamp(Character_Rigidbody.velocity, _direction * currentMovementValues[(int)E_MovementValues.Speed_Walk] * _crouchMultiplier, ref currentVelocity, currentMovementValues[(int)E_MovementValues.Movement_DampUp]); // Normal Movement
         }
-        else character_Rigidbody.velocity = Vector3.SmoothDamp(character_Rigidbody.velocity, Vector3.zero * _crouchMultiplier, ref currentVelocity, dampSpeedDown);
+        else Character_Rigidbody.velocity = Vector3.SmoothDamp(Character_Rigidbody.velocity, Vector3.zero * _crouchMultiplier, ref currentVelocity, currentMovementValues[(int)E_MovementValues.Movement_DampDown]);
+
+        // RotatePlayer();
     }
-    
+    //private void RotatePlayer()
+    //{
+    //    // Calculate the target rotation based on the movement axis
+    //    Vector3 _axis = movementAxis;
+
+    //    if (_axis.magnitude > movementThreshold)
+    //    {
+    //        float _turnAMT = Mathf.Clamp((rotationAmount * _axis.x), -90, 90);
+    //        _turnAMT = _axis.y < 0 ? (_turnAMT * -1) + -180 : _axis.y >= 0 ? _turnAMT + 0f : _turnAMT + 0;
+
+    //        Vector3 _turnDirection = new Vector3(0f, _turnAMT, 0f);
+    //        _turnDirection -= Camera.main.transform.forward;
+
+    //        Quaternion targetRotation = Quaternion.Euler(_turnDirection);
+
+    //        // Smoothly interpolate between the current rotation and the target rotation
+    //        Character_Visuals.transform.rotation = Quaternion.Lerp(Character_Visuals.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    //    }
+    //}
     #endregion
 
     #region Keeping The Character Upright Methods
@@ -222,6 +254,7 @@ public class Player_Movement : AnimatorBrain
         return Quaternion.Euler(deltaAngles);
     }
     #endregion
+    #region Animation
     private void DefaultAnimation(int _layer)
     {
         if (_layer == UPPERBODY) { CheckTopAnimation(); }
@@ -230,4 +263,59 @@ public class Player_Movement : AnimatorBrain
     private void CheckTopAnimation() { CheckMovementAnimations(UPPERBODY); }
     private void CheckBottomAnimation() { CheckMovementAnimations(LOWERBODY); }
     private void CheckMovementAnimations(int _layer) { }
+    #endregion
+
+    #region Getters & Setters
+    private void SetupMovementValues()
+    {
+        defaultMovementValues = new List<float>()
+        {
+            walkSpeed,
+            sprintSpeed,
+            rotationAmount,
+            rotationSpeed,
+            dampSpeedUp,
+            dampSpeedDown
+        };
+        foreach (var value in defaultMovementValues) { currentMovementValues.Add(value); }
+    }
+
+    public void ResetMovementValues()
+    {
+        currentMovementValues.Clear();
+        foreach (var value in defaultMovementValues) { currentMovementValues.Add(value); }
+    }
+
+    public float GetMovementValue(E_MovementValues _valueType) => currentMovementValues[(int)_valueType];
+    public void SetMovementValue(E_MovementValues _valueType, float _value) => currentMovementValues[(int)_valueType] = _value;
+
+    public void SetMovementValues(List<float> _newValues)
+    {
+        for (int i = 0; i < currentMovementValues.Count; i++)
+        {
+            currentMovementValues[i] = _newValues[i];
+        }
+    }
+
+    public bool GetIsCurrentValuesDefault()
+    {
+        for (int i = 0; i < defaultMovementValues.Count; i++)
+        {
+            if (currentMovementValues[i] == defaultMovementValues[i]) { continue; }
+            else return false;
+        } return true;
+    }
+
+    #endregion
+}
+
+
+public enum E_MovementValues
+{
+    Speed_Walk,
+    Speed_Sprint,
+    Rotation_Degrees,
+    Rotation_Speed,
+    Movement_DampUp,
+    Movement_DampDown,
 }

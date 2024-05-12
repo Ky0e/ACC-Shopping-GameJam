@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class BonkStick : MonoBehaviour
 {
-    [SerializeField] float damage;
     [SerializeField] bool friendlyFire = false;
+
+    float damage;
+
+    public void SetBonkStickDamage(float _damage)
+    {
+        damage = _damage;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

@@ -14,7 +14,7 @@ public class BonkStick : MonoBehaviour
             Component_DamageApplier da = gameObject.GetComponent<Component_DamageApplier>();
             if (da)
             {
-                da.ApplyDamage(-1, Mathf.RoundToInt(damage), 0.2f);
+                da.ApplyDamage(collision.collider, -1, Mathf.RoundToInt(damage), 0.2f);
             }
         }
     }

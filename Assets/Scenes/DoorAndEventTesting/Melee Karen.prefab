@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: -2857372428486575479}
   m_Layer: 0
   m_Name: Melee Karen
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -486,8 +486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5eda54390289144b4d9e352eb2585e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackCollider: {fileID: 2407042629346113015}
-  shouldDeactivate: 1
+  AttackCollider: {fileID: 2338746627095180908}
+  shouldDeactivate: 0
 --- !u!136 &2338746627095180908
 CapsuleCollider:
   m_ObjectHideFlags: 0

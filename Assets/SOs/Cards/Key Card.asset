@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4ae93eaec0c7a4da9538a1c8017005, type: 3}
   m_Name: Key Card
   m_EditorClassIdentifier: 
-  cardType: 0
+  cardType: 18
   cardSprite: {fileID: 0}
+  modifiedPropertyA: 0
+  modifierValueA: 0
+  modifiedPropertyB: 0
+  modifierValueB: 0
+  modifiedPropertyC: 0
+  modifierValueC: 0
+  modifiedPropertyD: 0
+  modifierValueD: 0

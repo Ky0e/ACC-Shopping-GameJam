@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class InputReader : MonoBehaviour
     [HideInInspector] public Vector2 RotationAxis;
     [HideInInspector] public bool Attack = false;
     [HideInInspector] public bool Interact = false;
+    [HideInInspector] public bool ToggleWallet = false;
 
     public UnityEvent ChangedInputToMouseAndKeyboard;
     public UnityEvent ChangedInputToGamepad;
@@ -34,9 +36,14 @@ public class InputReader : MonoBehaviour
         controls.Gameplay.Attack.canceled += ctx => OnAttackEnded(ctx);
         controls.Gameplay.Interact.performed += ctx => OnInteract(ctx);
         controls.Gameplay.Interact.canceled += ctx => OnInteractEnded(ctx);
+
+        controls.Gameplay.ToggleWallet.performed += ctx => OnWalletToggled(ctx);
     }
 
-
+    private void OnWalletToggled(InputAction.CallbackContext ctx)
+    {
+        ToggleWallet = !ToggleWallet;
+    }
 
     private void OnAttack(InputAction.CallbackContext ctx)
     {

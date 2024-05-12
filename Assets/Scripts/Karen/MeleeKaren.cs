@@ -13,12 +13,14 @@ public class MeleeKaren : Enemy
     private GameObject target;
     private bool isAttacking;
 
+    private float timeReminingUntilNextAttack;
 
     private void Awake()
     {
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player");
         agent.stoppingDistance = distanceFromTarget;
+        timeReminingUntilNextAttack = timeBetweenAttacks;
     }
 
     private void Update()
@@ -29,25 +31,27 @@ public class MeleeKaren : Enemy
         }
 
         if (isDead) return;
+
+        timeReminingUntilNextAttack -= Time.deltaTime;
+        if(timeReminingUntilNextAttack <= 0 )
+        {
+            isAttacking = true;
+            timeReminingUntilNextAttack = timeBetweenAttacks;
+        }
+
         agent.destination = target.transform.position;
         float distance = Vector3.Distance(agent.transform.position, target.transform.position);
-        if (distance <= agent.stoppingDistance && !isAttacking)
-        {
-            StartCoroutine("AttackCoroutine");
-        }
+
     }
-    IEnumerator AttackCoroutine()
+
+    private void OnCollisionEnter(Collision collision)
     {
-        isAttacking = true;
-        while (isAttacking)
+        if (collision.collider.tag == "Player")
         {
-            damageApplier.ApplyDamage(-1, (int)damageAmount);
-            float distance = Vector3.Distance(agent.transform.position, target.transform.position);
-            if (distance > agent.stoppingDistance)
-            {
-                isAttacking = false;
-            }
-            yield return new WaitForSeconds(timeBetweenAttacks);
+            if (collision == null) return;
+            if (!isAttacking) return;
+            damageApplier.ApplyDamage(collision.collider, -1, 5);
+            isAttacking = false;
         }
     }
 }

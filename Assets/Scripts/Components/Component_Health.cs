@@ -56,4 +56,9 @@ public class Component_Health : MonoBehaviour, IDamageable
         Debug.Log("LET ME SEE THE MANAGER");
         DecreaseHealth(damageAmount);
     }
+
+    public void SetMaxHealth(float _maxHealth)
+    {
+        maxHealth = _maxHealth;
+    }
 }

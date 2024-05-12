@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Passport Card
   m_EditorClassIdentifier: 
   cardType: 7
+  cardSprite: {fileID: 21300000, guid: cb6f651febe60a3479ab382c5131988b, type: 3}

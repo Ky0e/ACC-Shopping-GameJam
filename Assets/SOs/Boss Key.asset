@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Boss Key
   m_EditorClassIdentifier: 
   cardType: 0
+  cardSprite: {fileID: 0}

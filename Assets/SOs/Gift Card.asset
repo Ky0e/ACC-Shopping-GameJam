@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Gift Card
   m_EditorClassIdentifier: 
   cardType: 3
+  cardSprite: {fileID: 21300000, guid: 68a9bfdc7cd07524388016d2b28f8c96, type: 3}

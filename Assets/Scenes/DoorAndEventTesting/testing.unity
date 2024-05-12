@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &3078490 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5300358498610630372, guid: 654881e0c0c45f74aa14a6a488527c54, type: 3}
-  m_PrefabInstance: {fileID: 6321903403046530366}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3078494 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6599739271202566071, guid: 654881e0c0c45f74aa14a6a488527c54, type: 3}
@@ -426,6 +421,7 @@ Transform:
   - {fileID: 611431081}
   - {fileID: 829874291}
   - {fileID: 3078494}
+  - {fileID: 1901473692}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &321768835
@@ -513,7 +509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f4b4802a0fc164780c045111383e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerVolume: {fileID: 3078490}
   lockDoorsOnEntry: 1
   itemRequiredToStartRoomEvent: {fileID: 0}
   doorsToControl:
@@ -655,7 +650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e60604f317c744aa72dea8b3103906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerVolume: {fileID: 0}
   lockDoorsOnEntry: 1
   itemRequiredToStartRoomEvent: {fileID: 11400000, guid: 1fa69b08e9b015d448c6c415dd8e21b4, type: 2}
   doorsToControl:
@@ -1450,6 +1444,7 @@ MonoBehaviour:
   RotationAxis: {x: 0, y: 0}
   Attack: 0
   Interact: 0
+  ToggleWallet: 0
   ChangedInputToMouseAndKeyboard:
     m_PersistentCalls:
       m_Calls: []
@@ -1938,6 +1933,8 @@ MonoBehaviour:
   IsFacingRight: 0
   IsFacingLeft: 0
   IsTurning: 0
+  defaultMovementValues: []
+  currentMovementValues: []
 --- !u!65 &1278983971
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2053,6 +2050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  lastCheckpoint: {fileID: 0}
 --- !u!1 &1294387742
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,6 +2515,7 @@ MonoBehaviour:
   RotationAxis: {x: 0, y: 0}
   Attack: 0
   Interact: 0
+  ToggleWallet: 0
   ChangedInputToMouseAndKeyboard:
     m_PersistentCalls:
       m_Calls: []
@@ -3040,6 +3039,81 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2281282554794470659, guid: 03f861b8b12447c45b29197beccfa734, type: 3}
   m_PrefabInstance: {fileID: 769635749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1901473691
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 321768833}
+    m_Modifications:
+    - target: {fileID: 5300358498610630372, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_Name
+      value: Checkpoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0009731889
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.45983344
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+--- !u!4 &1901473692 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6599739271202566071, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+  m_PrefabInstance: {fileID: 1901473691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1901473693 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5300358498610630372, guid: 511dfc40f4ea6f045a4f4775ca631c4b, type: 3}
+  m_PrefabInstance: {fileID: 1901473691}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1944457442
 PrefabInstance:
@@ -3875,6 +3949,8 @@ MonoBehaviour:
   IsFacingRight: 0
   IsFacingLeft: 0
   IsTurning: 0
+  defaultMovementValues: []
+  currentMovementValues: []
 --- !u!65 &2118611320
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3999,6 +4075,18 @@ PrefabInstance:
       propertyPath: triggerTarget
       value: 
       objectReference: {fileID: 321768832}
+    - target: {fileID: 2426791112443977700, guid: 654881e0c0c45f74aa14a6a488527c54, type: 3}
+      propertyPath: triggerTarget.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2426791112443977700, guid: 654881e0c0c45f74aa14a6a488527c54, type: 3}
+      propertyPath: 'triggerTarget.Array.data[0]'
+      value: 
+      objectReference: {fileID: 321768832}
+    - target: {fileID: 2426791112443977700, guid: 654881e0c0c45f74aa14a6a488527c54, type: 3}
+      propertyPath: 'triggerTarget.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1901473693}
     - target: {fileID: 5300358498610630372, guid: 654881e0c0c45f74aa14a6a488527c54, type: 3}
       propertyPath: m_Name
       value: TriggerVolume

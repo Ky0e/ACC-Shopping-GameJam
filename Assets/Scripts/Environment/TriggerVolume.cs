@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TriggerVolume : MonoBehaviour
 {
 
-    [SerializeField] private GameObject triggerTarget;
+    [SerializeField] private List<GameObject> triggerTarget;
 
     private ITriggerable trigger;
 
@@ -14,7 +15,13 @@ public class TriggerVolume : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        triggerTarget.GetComponent<ITriggerable>().Triggered(other);
+        foreach (GameObject triggerTarget in triggerTarget)
+        {
+            trigger = triggerTarget.GetComponent<ITriggerable>();
+            if (trigger != null)
+            {
+                trigger.Triggered(other);
+            }
+        }
     }
-
 }

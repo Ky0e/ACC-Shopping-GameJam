@@ -209,14 +209,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee40ef29d0058f48bae1bf5ae87bfec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
   agent: {fileID: 0}
   timeBetweenAttacks: 1
   distanceFromTarget: 8
   target: {fileID: 2864377857783487252}
   timeBetweenSpawns: 5
   karensToSpawn:
-  - {fileID: 967187906602085260, guid: 7420469de69e7b143918f817af3c8fd3, type: 3}
+  - {fileID: 967187906602085260, guid: c8606732a07189547a54ef4f470a4e4b, type: 3}
   - {fileID: 5661467558705653475, guid: 2221a4ff3430f2745b12716e7cdcd300, type: 3}
   maxKarenBatch: 5
 --- !u!1 &2864377857783487252

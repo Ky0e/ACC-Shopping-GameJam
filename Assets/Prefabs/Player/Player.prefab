@@ -595,9 +595,13 @@ GameObject:
   - component: {fileID: 3427558934702760876}
   - component: {fileID: 3630181976347147569}
   - component: {fileID: 5069090658927069491}
+<<<<<<< Updated upstream:Assets/Prefabs/Player/Player.prefab
   - component: {fileID: 3314789225051852646}
   - component: {fileID: 9128573331242241666}
   - component: {fileID: 205796363361624626}
+=======
+  - component: {fileID: 1976687994323690739}
+>>>>>>> Stashed changes:Assets/Prefabs/Player.prefab
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -731,7 +735,11 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream:Assets/Prefabs/Player/Player.prefab
 --- !u!114 &3314789225051852646
+=======
+--- !u!114 &1976687994323690739
+>>>>>>> Stashed changes:Assets/Prefabs/Player.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -745,6 +753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items: []
   soHub: {fileID: 11400000, guid: 1d49cd2ff08e38f4591791d6d54d2e5c, type: 2}
+<<<<<<< Updated upstream:Assets/Prefabs/Player/Player.prefab
 --- !u!114 &9128573331242241666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,3 +786,5 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 0}
   debugHealthMeter: 0
+=======
+>>>>>>> Stashed changes:Assets/Prefabs/Player.prefab

@@ -14,3 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 10
   cardSprite: {fileID: 21300000, guid: cc76bab4927e4ab4c938e574f5eadaa0, type: 3}
+  modifiedPropertyA: 2
+  modifierValueA: 50
+  modifiedPropertyB: 7
+  modifierValueB: 50
+  modifiedPropertyC: 0
+  modifierValueC: 0
+  modifiedPropertyD: 0
+  modifierValueD: 0

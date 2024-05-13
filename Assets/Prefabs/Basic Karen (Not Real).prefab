@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 299075918216822338}
   - component: {fileID: 7272584242931116114}
   m_Layer: 0
-  m_Name: Basic Karen
+  m_Name: Basic Karen (Not Real)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

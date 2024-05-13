@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cfc2f3872dc6544a38de94ca9a91a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 10
   agent: {fileID: 7448305598962989836}
   timeBetweenAttacks: 3
   distanceFromTarget: 3
@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b5d6e80c59ec84c8068fc2a5fb3c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 10
   currentHealth:
     UseConstant: 1
     ConstantValue: 0

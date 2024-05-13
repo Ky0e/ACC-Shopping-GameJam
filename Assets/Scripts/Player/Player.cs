@@ -10,7 +10,8 @@ public enum PlayerProperties
     Speed,
     WeaponDamage,
     WeaponRange,
-    DeflectRangedAttacks
+    DeflectRangedAttacks,
+    CurrentHealth
 }
 
 public class Player : MonoBehaviour, IDestructible
@@ -117,6 +118,9 @@ public class Player : MonoBehaviour, IDestructible
             case PlayerProperties.DeflectRangedAttacks:
                 DeflectRangedAttacks = _value;
                 bonkStick.GetComponent<BonkStick>().SetDeflectRangedAttacks(DeflectRangedAttacks > 0);
+                break;
+            case PlayerProperties.CurrentHealth:
+                CurrentHealth += _value; 
                 break;
             default:
                 break;

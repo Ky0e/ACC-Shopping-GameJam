@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractablePikup : MonoBehaviour, IInteractable
 {
-    [field: SerializeField] CardSO keyCard;
+    public CardSO keyCard;
     [field: SerializeField] private GameObject canvasPrefab;
     [field: SerializeField] private Transform canvasSpawnPoint;
     [field: SerializeField, ReadOnly] private Canvas_DialoguePopUp interactCanvas;

@@ -35,7 +35,8 @@ public class Player_Inventory : MonoBehaviour
     public bool HasCardOfType(eCardType _cardType)
     {
         CardSO _card = items.Find(x => x.cardType == _cardType);
-        return _card != null;
+        if (_card == null) return false;
+        else return true;
     }
 
     public void AddItem(CardSO _item)

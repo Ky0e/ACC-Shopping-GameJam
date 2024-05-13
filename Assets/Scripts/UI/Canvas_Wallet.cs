@@ -20,8 +20,8 @@ public class Canvas_Wallet : MonoBehaviour
         {
             Player_Inventory.Instance.OnItemsListUpdated += DetermineCardActive;
         }
-        walletOpened.SetActive(false);
-        walletClosed.SetActive(true);
+        //walletOpened.SetActive(false);
+        //walletClosed.SetActive(true);
     }
 
     private void Update()
@@ -43,16 +43,19 @@ public class Canvas_Wallet : MonoBehaviour
 
     private void DetermineCardActive()
     {
-        for (int i = 0; i < cardObjects.Count; i++)
+        Debug.Log("Card Picked Up");
+        foreach (GameObject p in cardObjects)
         {
-            if (cardObjects[i].activeInHierarchy && !Player_Inventory.Instance.HasCardOfType((eCardType)i))
+            card temp = p.GetComponent<card>();
+            //Debug.Log(temp.ToString());
+            if (p.activeInHierarchy && !Player_Inventory.Instance.HasCardOfType(temp.cardSO.cardType))
             {
                 // Disable Card If The Player Doesn't Have
-                cardObjects[i].SetActive(false);
+                p.SetActive(false);
             }
-            else if(!cardObjects[i].activeInHierarchy && Player_Inventory.Instance.HasCardOfType((eCardType)i))
+            else if (!p.activeInHierarchy && Player_Inventory.Instance.HasCardOfType(temp.cardSO.cardType))
             {
-                cardObjects[i].SetActive(true);
+                p.SetActive(true);
             }
         }
     }

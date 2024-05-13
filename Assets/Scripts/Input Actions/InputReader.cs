@@ -43,6 +43,7 @@ public class InputReader : MonoBehaviour
     private void OnWalletToggled(InputAction.CallbackContext ctx)
     {
         ToggleWallet = !ToggleWallet;
+        Debug.Log("toggle Wallet");
     }
 
     private void OnAttack(InputAction.CallbackContext ctx)
